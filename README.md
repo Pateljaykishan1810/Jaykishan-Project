@@ -662,7 +662,7 @@ To estimate the cost of the dataset preparation phase for the above-listed proje
 Picture 26: DAP Estimated Cost
 <div align="center">
 
-Conclusion 
+**Conclusion **
 
 </div>
 
@@ -942,7 +942,7 @@ CloudTrail and CloudWatch Activity Monitoring
 ![image](https://github.com/user-attachments/assets/275c6595-88a0-4597-8aed-1d25bdf93bff)
 **Figure 2.9**
 ![image](https://github.com/user-attachments/assets/7c5c7461-7a2f-410e-bf53-a1827ccaf071)
-**Dataset 3: Business Licences in Downtown Vancouver (By Gurleen Kaur Khosa)**  
+**Dataset 3: Business Licences in Downtown Vancouver**  
 **DAP Design and Implementation (Steps 15-17)**  
 **Step 15: Data Protection**  
 To ensure data protection, I implemented the following steps using AWS Key Management Service (KMS).  
