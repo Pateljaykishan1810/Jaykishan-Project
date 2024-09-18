@@ -882,8 +882,83 @@ Data Lake Permissions
 **Figure 2.7**  
 CloudWatch Log Events
 ![image](https://github.com/user-attachments/assets/18bd8e2d-1ab6-43f2-b556-71524e38f076)
+**Step 17: Data Monitoring**  
+This step ensures that data processes within the City of Vancouver's AWS Data Analytic Platform (DAP) are continuously monitored for performance, security, and operational efficiency.
 
+**Figure 2.8**  
+CloudTrail and CloudWatch Activity Monitoring
+![image](https://github.com/user-attachments/assets/275c6595-88a0-4597-8aed-1d25bdf93bff)
+**Figure 2.9**
+![image](https://github.com/user-attachments/assets/7c5c7461-7a2f-410e-bf53-a1827ccaf071)
+**Dataset 3: Business Licences in Downtown Vancouver (By Gurleen Kaur Khosa)**  
+**DAP Design and Implementation (Steps 15-17)**  
+**Step 15: Data Protection**  
+To ensure data protection, I implemented the following steps using AWS Key Management Service (KMS).  
+- **Create a Key**  
+  - Designed layout in draw.io.  
+  - Created a key for my domain: business-businesslicence-key-gurleen using KMS.  
+  - Defined key administrative permissions, assigning the LabRole to manage the key.  
+  - Granted permissions for key usage, allowing users with the LabRole to use the key for encryption.  
+- **Block Public Access**  
+  - Blocked all public access to the bucket, ensuring only authorized users with specific roles and permissions can interact with the content.
 
+**Figure 3.1**  
+Business-BusinessLicence-Gurleen - KMS Design
+![image](https://github.com/user-attachments/assets/04bbada9-f8cb-4e41-b69c-9a382f8a3ee5)
+**Figure 3.2**
+Business-BusinessLicence-Gurleen - Configuring KMS
+![image](https://github.com/user-attachments/assets/7d418879-7785-409e-a996-f89acb3acaa8)
+**Figure 3.3**
+Business-BusinessLicence-Gurleen - Key Usage Permissions
+![image](https://github.com/user-attachments/assets/4ed3bded-a264-4767-bff5-ab64aba38eab)
+**Figure 3.4**
+Business-BusinessLicence-Gurleen - Key Administrative Permissions
+![image](https://github.com/user-attachments/assets/efe1a9f5-3c18-4df7-a22b-bbec407ec3b7)
+**Figure 3.5**
+Business-BusinessLicence-Gurleen - Reviewing Ker Configuration Steps
+![image](https://github.com/user-attachments/assets/77b3703e-1c0d-4199-88cb-906f32bcd652)
+**Figure 3.6**
+Business-BusinessLicence-Gurleen - Created Key Result
+![image](https://github.com/user-attachments/assets/c2fd0281-c875-463b-9ba3-284bdddf284f)
+**Configure Encryption**  
+- Changed default encryption settings to use the created key for automatic encryption of newly uploaded datasets.  
+- Enabled bucket versioning, allowing multiple versions of files to be stored for recovery or reference.
+
+**Figure 3.7**  
+Business-BusinessLicence-Gurleen - Bucket Versioning
+![image](https://github.com/user-attachments/assets/f143c6ee-54e1-419c-aaeb-5704b63bfa16)
+**Create a Backup Bucket**  
+- Created a backup bucket: business-businesslicence-backup-gurleen  
+- Set server-side encryption with AWS KMS keys (SSE-KMS) for added security.  
+- Enabled bucket versioning to store multiple versions of files.
+
+**Figure 3.8**  
+Business-BusinessLicence-Gurleen - Backup Bucket
+![image](https://github.com/user-attachments/assets/f823a2e5-0351-4577-ad9f-3d43e46c35e8)
+**Set up Replication Rule**  
+- Created a replication rule to automatically copy files from the original bucket to the backup bucket.  
+- Chose the original bucket, source bucket, and destination bucket.  
+- Selected the LabRole IAM role and the created KMS key for encrypting destination objects.
+
+**Figure 3.9**  
+Business-BusinessLicence-Gurleen - Replication Rule
+![image](https://github.com/user-attachments/assets/6642dc81-9a72-4513-88a0-0d460f636510)
+**By following these steps, I ensured that data is protected with symmetric encryption, and multiple versions of files are stored for recovery or reference. The backup bucket provides an additional layer of security in case the original bucket is destroyed.**
+
+**Step 16: Data Governance**  
+In this step, to ensure data quality and privacy, I created a data governance process using AWS Glue. I set up a Virtual ETL job, Business-BusinessLicence-DQDP-Gurleen, which fetches raw data from an S3 bucket. The job checks the data for quality using a rule that ensures the LicenseStatus column is complete over 95%. The data is then routed based on the quality assessment, with high-quality data passing through to the next step using conditional router node which divides data into two categories – one being PassedGroup which contains all the records that exactly match with the filter condition and DataQualityEvaluationResult is marked as Passed. Another category of conditional router is default_group which contains records which failed the DataQualityEvaluationResult.  
+The job also ensures data privacy by detecting sensitive information, encrypting data at rest and in transit, and controlling access through permission settings and AWS KMS keys. This ensures that private data is protected and only accessible to authorized users, in compliance with privacy regulations.  
+The processed data is stored in an S3 bucket, business-businesslicence-trusted, in CSV format, without compression. This ensures that the data is available for further use or analysis. Finally, we run the job.
+
+**Figure 3.10**  
+Business-BusinessLicence-Gurleen - ETL Pipeline Implementation for DQDP
+![image](https://github.com/user-attachments/assets/eedc0a3e-c82c-49c6-8865-2b59a51118dd)
+**Figure 3.11**
+Business-BusinessLicence-Gurleen - ETL Pipeline Implementation for DQDP
+![image](https://github.com/user-attachments/assets/2c1f3f60-cd72-4871-ad62-eedd94d4507d)
+Figure 3.12
+Business-BusinessLicence-Gurleen - Full overview of ETL Pipeline Implementation for DQDP
+![image](https://github.com/user-attachments/assets/cb8b5e15-a935-42c4-b67e-f97f931ef6ff)
 
 
 
