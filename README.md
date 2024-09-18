@@ -678,6 +678,27 @@ Tillu, J. (2024, May 12). Understanding Amazon S3 storage classes. Medium. [http
 
 
 
+<p align="center">
+  <strong>Project - Part #2</strong>  
+</p>
+<p align="center">
+  <strong>AWS Data Analytic Platform for The City of Vancouver</strong>  
+</p>
+<p align="center">
+  <strong>Jaykishan Ashokkumar Patel (2237183)</strong>  
+</p>
+<p align="center">
+  <strong>University Canada West</strong>  
+</p>
+<p align="center">
+  <strong>BUSI 653: Cloud Computing Technologies (HBD-SUMMER24-07)</strong>  
+</p>
+<p align="center">
+  <strong>Mahmood Mortazavi Dehkordi</strong>  
+</p>
+<p align="center">
+  <strong>September 15, 2024</strong>  
+</p>
 
 
 
