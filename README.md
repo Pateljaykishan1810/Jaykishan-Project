@@ -7,12 +7,12 @@
 # Project - Part 1  
 ## AWS Data Analytic Platform for The City of Vancouver  
  
-Jaykishan Ashokkumar Patel (2237183)  
+**Jaykishan Ashokkumar Patel (2237183)  
 
 University Canada West  
 BUSI 653: Cloud Computing Technologies (HBD-SUMMER24-07)  
 Mahmood Mortazavi Dehkordi  
-August 27, 2024  
+August 27, 2024  **
 
 </div>
 
