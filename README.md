@@ -140,63 +140,128 @@ To be able to implement and migrate a data analytic platform for The City of Van
 
 This structured approach ensures that the data analytic platform is both comprehensive and scalable, meeting the city's current and future data needs.
 
-<h2 align="center">Dataset 1: 3-1-1 Service Requests Regarding "Abandoned Non-Recyclables—Small Case"</h2>
+# Data Analytic Platform (DAP) for City of Vancouver
 
-### By Ugochukwu Nwosu
+## Overview
 
-<h3 align="center">DAP Design and Implementation (Steps 1-13)</h3>
+This project focuses on designing and implementing a Data Analytic Platform (DAP) for the City of Vancouver. The platform aims to enhance the efficiency of waste management and business license issuance processes through detailed data analysis.
 
-**Step 1: Data Analytical Question Formulation**  
-Define the data analytical questions specific to a department. Recycle BC will analyze service requests for abandoned non-recyclables, focusing on improving waste management efficiency by examining how service requests were handled in 2022.
+## Dataset 1: 3-1-1 Service Requests Regarding “Abandoned Non-Recyclables—Small Case” (By Ugochukwu Nwosu)
 
-**Step 2: Data Discovery**  
-Select and gather relevant datasets, specifically the 3-1-1 service requests regarding abandoned non-recyclables from the Open Data Portal in Vancouver.
+### Step 1: Data Analytical Question Formulation
 
-![Figure 1](URL)  
-*Image: Authors*
+Define the data analytical questions to address issues within the Recycle BC department, focusing on abandoned non-recyclable items. The goal is to:
+- Increase response times
+- Decrease the rate of abandoned items
+- Enhance city cleanliness and resident satisfaction
 
-**Step 3: Data Storage Design**  
-Use Amazon S3 to design the storage solution, creating a bucket named `RecycleBC-AbandonedNonRecyclables` to store data securely.
+**Descriptive Analysis Approach**: Answer the question, "What happened with the abandoned non-recyclable service requests in 2022?"
 
-![Figure 2](URL)  
-*The S3 Bucket with the 2023 and 2024 Folders*
+### Step 2: Data Discovery
 
-**Step 4: Dataset Preparation**  
-Clean and format datasets for 2023 and 2024 for analysis, focusing on abandoned non-recyclables.
+The dataset includes 3-1-1 service requests related to "Abandoned Non-Recyclables—Small Case". It contains:
+- Service delivery requests from residents
+- Focus on small cases of abandoned non-recyclables
 
-![Figure 3](URL)  
-*The Downloaded Datasets in The Local Environment*
+**Figure 1**: The Datasets from the Open Data Portal in the City of Vancouver
 
-**Step 5: Data Ingestion (Pull data into Operational Environment)**  
-Move the prepared data into S3 storage, ensuring it is accessible for further processing.
+### Step 3: Data Storage Design
 
-![Figure 4](URL)  
-*The Dataset Files Pulled into the Operational Environment*
+Use Amazon S3 for data storage:
+- Bucket Name: `RecycleBC-AbandonedNonRecyclables`
+- Structure: Folders for 2023 and 2024
 
-**Step 6: Data Storage**  
-Organize the S3 bucket with `Landing`, `Raw`, and `Curated` folders to manage the data workflow.
+**Figure 2**: The S3 Bucket with the 2023 and 2024 Folders
 
-![Figure 5](URL)  
-*The Landing, Raw, and Curated Folders*
+### Step 4: Dataset Preparation
 
-**Step 7: Data Pipeline Design**  
-Design the data pipeline to automate data movement and transformation.
+Prepare data for analysis:
+- Focus on years 2023 and 2024
+- Highlight contemporary issues in waste management
 
-![Figure 6](URL)  
-*The Data Pipeline*
+**Figure 3**: The Downloaded Datasets in The Local Environment
 
-**Step 8: Data Cleaning**  
-Use AWS Glue DataBrew for cleaning the dataset, handling invalid values, and ensuring data quality.
+### Step 5: Data Ingestion (Pull data into Operational Environment)
 
-![Figure 7](URL)  
-*The Projects Created with the Respective Jobs After Cleaning*
+Move prepared datasets into Amazon S3:
+- Data uploaded to `RecycleBC/AbandonedNonRecyclables/2023/Landing/ServiceRequests` and `RecycleBC/AbandonedNonRecyclables/2024/Landing/ServiceRequests`
 
-**Step 9: Data Structuring**  
-Structure the cleaned data to fit analytical needs and move it to the `Raw` folder in S3.
+**Figure 4**: The Dataset Files Pulled into the Operational Environment
 
-**Step 10: Data Pipeline Implementation (ETL)**  
-Implement the ETL pipeline in AWS Glue, automating data processing for Recycle BC’s non-recyclable waste service requests.
+### Step 6: Data Storage
 
----
+Organize data into folders:
+- `Landing` for raw data
+- `Raw` for cleansed data
+- `Curated` for processed data
 
-Repeat this format for all remaining steps and datasets. The images should be uploaded and the correct links added where the URLs are mentioned.
+**Figure 5**: The Landing, Raw, and Curated Folders hold the Initial, Raw, and Processed Data
+
+### Step 7: Data Pipeline Design
+
+**Figure 6**: The Data Pipeline
+
+### Step 8: Data Cleaning
+
+Use AWS Glue DataBrew for cleaning:
+- Project focused on Recycle BC
+- Validate and clean data
+
+**Figure 7**: The Projects Created with the Respective Jobs After Cleaning
+
+### Step 9: Data Structuring
+
+Transform data to fit analysis requirements and move to the `Raw` folder.
+
+### Step 10: Data Pipeline Implementation (ETL)
+
+Use AWS Glue for ETL:
+- Automate data flow and transformation
+
+**Figure 8**: The Project’s Visual ETL
+
+### Step 11: Data Analysis
+
+Analyze data with Amazon Athena:
+- Run SQL queries to identify patterns, trends, and regional data
+
+**Figure 9**: The Query Results
+
+### Step 12: Data Visualization
+
+**Figure 10**: The Graph Showing the Channels Used in Making these Reports
+
+### Step 13: Data Publishing
+
+Host results on Amazon EC2 with Apache:
+- Provides scalable and secure access to analysis results
+
+**Figure 11**: The EC2 Instance and the Web Server Process
+
+## Dataset 2: Business Licences in Downtown Vancouver (By Gurleen Kaur Khosa)
+
+### Step 1: Data Analytical Question Formulation
+
+Formulate questions to improve:
+1. Business licenses issuance
+2. Delay reasons
+3. Renewal likelihood
+4. Proactive renewal reminders
+
+**Step 2: Data Discovery**
+
+Organize and understand data for business licenses.
+
+**Step 3: Data Storage Design**
+
+Create S3 bucket and folders:
+- Bucket Name: `business-businesslicences-gurleen`
+- Structure: Folders for each year and data type
+
+**Step 4: Dataset Preparation**
+
+Prepare and arrange data from the Open Data Portal for 2023 and 2024.
+
+**Step 5: Data Ingestion**
+
+
