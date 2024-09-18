@@ -26,7 +26,12 @@
 </div>
 ---
 
-# Abstract
+<div align="center">
+
+**Abstract**
+
+</div>
+
 This report presents the implementation of the Data Analytic Platform (DAP) for the City of Vancouver. The report covers the DAP design and implementation for four datasets from the City of Vancouver’s Open Data Portal:
 
 1. 3-1-1 Service Requests Regarding "Abandoned Non-Recyclables—Small Case"
