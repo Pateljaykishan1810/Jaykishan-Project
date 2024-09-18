@@ -698,6 +698,136 @@ Tillu, J. (2024, May 12). Understanding Amazon S3 storage classes. Medium. [http
   <strong>September 15, 2024</strong>  
 </p>
 
+Contents
+Introduction ................................................................. 4
+DAP Design and Implementation (Step 15-17) ............. 4
+Step 15: Data Protection .................................................. 4
+Step 16: Data Governance ................................................ 11
+Step 17: Data Monitoring ................................................ 16
+DAP Design and Implementation (Step 15-17) ............. 23
+Step 15: Data Protection ................................................ 23
+Step 16: Data Governance ................................................ 26
+Step 17: Data Monitoring ................................................ 28
+DAP Design and Implementation (Steps 15-17) .......... 30
+Step 15: Data Protection ................................................ 30
+Step 16: Data Governance ................................................ 36
+Step 17: Data Monitoring ................................................ 39
+DAP Design and Implementation (Steps 15-17) .......... 47
+Step 15: Data Protection ................................................ 47
+Step 16: Data Governance ................................................ 48
+Step 17: Data Monitoring ................................................ 49
+DAP Architecture Analysis (Teamwork) ........................ 50
+1. Operational Excellence ................................................. 50
+2. Security ...................................................................... 51
+3. Reliability ................................................................. 52
+4. Performance Efficiency .............................................. 54
+5. Cost Optimization ....................................................... 55
+6. Sustainability .............................................................. 56
+References .................................................................... 58
+AWS Data Analytic Platform for the City of Vancouver
+Introduction
+The City of Vancouver stands to benefit significantly from utilizing data to enhance decision-making, public services, and resource management. Implementing a Data Analytic Platform (DAP) is crucial as it offers a foundation for integrating, processing, and visualizing large volumes of data from various sources. This platform enables city officials to make informed decisions that enhance the quality of life, service delivery, and city planning.
+The DAP's value lies in its ability to convert vast amounts of data into actionable insights. By consolidating data from multiple departments, it provides a comprehensive view of the city’s operations, identifies trends, and helps anticipate future challenges. Additionally, a well-executed DAP promotes transparency and accountability, allowing the city to effectively communicate its achievements and initiatives to the public. The following table outlines the key steps the City of Vancouver must take to successfully implement its DAP, supporting its mission to optimize city operations and improve residents' well-being.
+Dataset 1: Animal Control – Lost and Found Animal (By Lam Thi Thu Thao)
+DAP Design and Implementation (Step 15-17)
+Step 15: Data Protection
+I searched for and practiced KMS (Key Management Service). 
+• I created a key with Alias labels: animalcontrol-lostandfoundanimal-key-lamthithuthao
+- My domain: Animal Control
+- Information description admission or procedure: Lost and Found Animal 
+- Function of this source: Key
+First, I defined the key administrative permissions required by providing actions that need to be controlled, meaning who can delete, destroy, or change the conditions for the key. Since no role was specified, I chose LabRole from my previous practice as the responsible role for maintaining the key. With LabRole assigned, any person bearing this role would be able to carry out administrative tasks like key deletion, destruction, or modification of its conditions. This allows effective management whereby all persons bearing the LabRole can manage the key with much ease.
+
+Figure 1.1
+Lost and Found Animal - Define key administrative permissions
+![image](https://github.com/user-attachments/assets/d72da277-e9ef-42f8-a04d-2823c52a0218)
+During this below step, I grant permissions related to key usage. Mainly we identify who possesses the key and can use it for encrypting rather than decrypting. We can assign a LabRole and require "anyone in this role can use this key." What we will be doing is granting permission to a role instead of granting it directly to a user; users who assume that role now automatically get access to that key and the permissions inside it.
+
+Figure 1.2
+Lost and Found Animal - Define key usage permissions
+![image](https://github.com/user-attachments/assets/005bc4df-926c-424a-9455-f7ab579d5587)
+After the above step, I set the block of all public access: No other user except those I have added as users or roles can view or change the content of the bucket. Since I have not permitted any outsiders, the data is kept safe from unauthorized access. This approach ensures that only those having certain roles and permissions can in any way interact with the content. This provides a heightened level of security with completely blocked public access. This is an absolute must in securing sensitive data and having control over who can view or perform alterations on the bucket.
+In most of these scenarios, users can't share keys or know each other but should communicate securely. In cases like this, symmetric encryption is applied, using the very same key both for encrypting and decrypting.
+•	Key type: Symmetric means we can use one key free for both actions (both encryption and decryption). It is another technique for encryption to use one key for another encryption.
+
+Figure 1.3
+Lost and Found Animal - Review - Symmetric
+![image](https://github.com/user-attachments/assets/f9f96e4e-903b-4a99-98fe-15f49667bc8e)
+In the Properties, I changed the default encryption settings; thus, every newly uploaded dataset into the bucket would be automatically encrypted with the given key. This means for all future uploads each file stored in the bucket will be securely encrypted. Whenever a user desires to download any dataset from this bucket, it will automatically get decrypted using the same key; hence, smoothly. While it does not change the way users upload and download data, it will store and protect data securely. This is the configuration for the encryption of sensitive information without complicating normal bucket operations.
+
+Figure 1.4
+Lost and Found Animal - Default Encryption
+![image](https://github.com/user-attachments/assets/6c169078-97a9-49a3-8570-e29dbffeda8d)
+Figure 1.5
+Lost and Found Animal - Bucket Versioning
+![image](https://github.com/user-attachments/assets/85bc1018-705e-45f2-b806-f7d3b22cfff2)
+Next, I enabled bucket versioning, and thus directly influenced the storage costs. If versioning had not been enabled, upon uploading a new object by users, only the latest version remained, while the older version was automatically deleted. Versioning, however, allows storing multiple versions of the same file every time a user uploads it in the bucket. While this feature provides the benefit of keeping prior versions for recovery or reference, the positive feature entails a drawback of high storage usage and hence a remarkably increasing cost with time passing and the increased number of file versions. 
+When a user has only one bucket, and something happens to it, all of their data is lost. I created an availability backup bucket just in case the original bucket was destroyed. Using AWS, in this case, I have created a new bucket stating the following information: 
+• Bucket Name: animalcontrol-lostandfoundanimal-backup-lamthithuthao
+• I then set server-side encryption with AWS Key Management Service keys (SSE-KMS) for added security.
+• I chose the available KMS key that was associated with the bucket and turned the bucket key on for extra efficiency in encryption management.
+• I enable bucket versioning so multiple versions of the files can be saved to make sure that past versions have been saved.
+
+Figure 1.6
+Lost and Found Animal - Backup Bucket
+![image](https://github.com/user-attachments/assets/1d87392f-3411-4e3b-8fbe-2a1badc8e838)
+Now, the new backup bucket was empty. If users want to see the content of this, it will be updated automatically by setting the Replication Rule on the AWS. For each time, users upload the file here, this file will be copied immediately. The purpose of this action is saving. If someone destroys this file, users still have a copy here. By doing these steps:
+• I chose the original bucket: animalcontrol-lostandfound-lamthithuthao
+• In the Management setting – choose Create Replication Rule:
+    + Replication rule name: animalcontrol-lostandfoundanimal-replicationrule-thithuthao
+    + Source bucket: Choose a rule scope: Apply to all objects in the bucket (it means all objects in this bucket will be copied automatically.)
+    + Destination: Bucket name browses from animalcontrol-lostandfoundanimal-backup-lamthithuthao
+    + IAM role: Choose from existing IAM roles – LabRole
+    + AWS KMS key for encrypting destination objects: Choose from your AWS KMS keys and browse animalcontrol-lostandfoundanimal-key-lamthithuthao
+
+Figure 1.7 
+Lost and Found Animal - Replication Rule
+![image](https://github.com/user-attachments/assets/5498f20e-8528-4ada-9a14-c6c102446dca)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
