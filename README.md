@@ -1,19 +1,18 @@
 <!-- Centered Cover Page -->
 
 <div align="center">
-#![image](https://github.com/user-attachments/assets/4da5e257-d14e-4a32-8304-98939b0d2037)
-![image](https://github.com/user-attachments/assets/55c62854-8017-4d81-bc28-da15658caec7)
 
+![image](https://github.com/user-attachments/assets/e66360ef-8d7c-4422-bc76-e359d30be61a)
 
 # Project - Part #1  
 ## AWS Data Analytic Platform for The City of Vancouver  
  
-#Jaykishan Ashokkumar Patel (2237183)  
+Jaykishan Ashokkumar Patel (2237183)  
 
-$University Canada West  
-#BUSI 653: Cloud Computing Technologies (HBD-SUMMER24-07)  
-#Mahmood Mortazavi Dehkordi  
-#August 27, 2024  
+University Canada West  
+BUSI 653: Cloud Computing Technologies (HBD-SUMMER24-07)  
+Mahmood Mortazavi Dehkordi  
+August 27, 2024  
 
 </div>
 
