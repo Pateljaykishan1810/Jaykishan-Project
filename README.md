@@ -724,7 +724,10 @@ DAP Architecture Analysis (Teamwork) ........................ 50
 5. Cost Optimization ....................................................... 55
 6. Sustainability .............................................................. 56
 References .................................................................... 58
-AWS Data Analytic Platform for the City of Vancouver
+
+
+
+#AWS Data Analytic Platform for the City of Vancouver
 Introduction
 The City of Vancouver stands to benefit significantly from utilizing data to enhance decision-making, public services, and resource management. Implementing a Data Analytic Platform (DAP) is crucial as it offers a foundation for integrating, processing, and visualizing large volumes of data from various sources. This platform enables city officials to make informed decisions that enhance the quality of life, service delivery, and city planning.
 The DAP's value lies in its ability to convert vast amounts of data into actionable insights. By consolidating data from multiple departments, it provides a comprehensive view of the city’s operations, identifies trends, and helps anticipate future challenges. Additionally, a well-executed DAP promotes transparency and accountability, allowing the city to effectively communicate its achievements and initiatives to the public. The following table outlines the key steps the City of Vancouver must take to successfully implement its DAP, supporting its mission to optimize city operations and improve residents' well-being.
