@@ -1,6 +1,10 @@
+<div align="center" style="font-weight: bold;">
+
 **Project - Part 1**
 
 **AWS Data Analytic Platform for The City of Vancouver**
+
+<br><br>
 
 **Jaykishan Ashokkumar Patel (2237183)**
 
@@ -9,7 +13,7 @@
 **Mahmood Mortazavi Dehkordi**  
 **September 15, 2024**
 
-
+</div>
 ---
 
 # Abstract
