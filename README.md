@@ -815,6 +815,74 @@ Lost and Found Animals - Alarm - Setting Condition
 
 **Figure 1.14**
 Lost and Found Animals - Alarm – Setting Notification
+![image](https://github.com/user-attachments/assets/3ca0ff57-042a-4fb1-9c50-56f38f203901)
+**Then, I have configured Alarm Notifications.** I have chosen the pre-existing SNS topic 'Default_CloudWatch_Alarms_Topic'. In addition, I have added an email notification for my email: (thithuthao.lam@myucwest.ca). By so doing, an email will be sent out in case charges exceed the $50 limit.
+
+Specifically, using Alarms allows tracking in real-time cost-related metrics and, in turn, timely notification in case the estimated AWS charges exceed the set threshold to take immediate action for managing the project budget.
+
+**Figure 1.15**
+Lost and Found Animals – Alarms
+![image](https://github.com/user-attachments/assets/3b257eed-9a3e-4123-98ec-34f9a5095519)
+**Figure 1.16**  
+Lost and Found Animals - Dashboards
+![image](https://github.com/user-attachments/assets/54b7d97c-e42c-43ff-a59d-e294ecaccdfd)
+Moving to CloudTrail, I used it to create a new trail, by setting this information:
+- **Name**: animalcontrol-lostfoundanimal-Trail-thithuthao
+- **Trail log bucket and folder**: aws-cloudtrail-logs-animalcontrol-lostfoundanimal-users
+- **AWS KMS alias**: animalcontrol-lostfoundanimal-logkey-thithuthao
+- **Event type**: Management events
+
+**Figure 1.17**  
+Lost and Found Animals - Setting Trail
+![image](https://github.com/user-attachments/assets/2f78f62d-b476-4548-85dd-5304a8bf78e4)
+The configuration allows the continuous monitoring of all actions and changes regarding AWS resources that are part of a project to be done transparently and securely. At the same time, I enabled SSE-KMS encryption. In this case, it uses a custom-managed AWS Key Management Service to protect the log files, thus allowing secure access to the logs. This is important for compliance and security reasons since unauthorized access is blocked to normally sensitive log data.
+**Figure 1.18**  
+Lost and Found Animals - CloudTrail
+![image](https://github.com/user-attachments/assets/6f37a008-dbc2-4bc0-a8f8-d90da186acb2)
+**Figure 1.19**  
+Lost and Found Animals – CloudTrail Folders
+![image](https://github.com/user-attachments/assets/c2b8f9ce-2608-4da4-b0cd-2f020b09fc2c)
+**Figure 1.20** 
+Lost and Found Animals - CloudWatch and CloudTrail
+![image](https://github.com/user-attachments/assets/00fe261f-3910-46e5-bc72-4d2b78141df2)
+Dataset 2: 3-1-1 Service Requests Regarding “Abandoned Non-Recyclables—Small Case”
+
+DAP Design and Implementation (Step 15-17)
+
+Step 15: Data Protection
+
+This step ensures that the data processed, stored, and transmitted in your AWS Data Analytic Platform (DAP) is secure from attacks such as theft, loss, and breaches. Security is an essential subprocess incorporated in the DAP to protect information, particularly when managing the City of Vancouver waste management data.
+
+As illustrated in the screenshots below, the security measures included IAM policies, encryption and data protection monitoring. IAM was set to comply with the principle of least privilege, which meant that only those users and roles that had permission to access sensitive objects, such as S3 buckets, were allowed to do so, and all were set to enforce MFA. To address the protection of data at rest, the Server-Side Encryption (SSE) and AWS Key Management Service (KMS) were applied for server-encrypted S3 with AWS-managed keys and customer-managed keys, respectively, to protect the data and protect them from access by third parties. Furthermore, S3 buckets were set up with cross-region replication, which offered backups and safeguard mechanisms in case of regional blackouts. Lastly, Amazon CloudTrail was implemented to record all activities carried out in the AWS account, who exactly completed the activity, and changes made to resources, thus providing a clear record of the shadow behind activities performed and making it easier to identify security threats. This comprehensive data protection guarantees its safety when it is collected, stored, processed, transmitted, and even aggregated with other datasets.
+
+**Figure 2.1**  
+IAM Role setup showing permissions to access S3
+![image](https://github.com/user-attachments/assets/ec71771b-4b15-470d-aca5-da45d73117f8)
+**Figure 2.2**  
+S3 bucket with encryption enabled (SSE-S3 or SSE-KMS)
+![image](https://github.com/user-attachments/assets/3466254b-c410-440c-b42d-0ba490f61e97)
+**Figure 2.3**  
+CloudTrail monitoring setup for access auditing and security monitoring
+![image](https://github.com/user-attachments/assets/e35c318f-2f34-47db-b5a6-596365124ea4)
+**Figure 2.4**  
+S3 Bucket Replication for Back up
+![image](https://github.com/user-attachments/assets/e5dd6091-811b-4d41-8791-39ae731660ae)
+### Step 16: Data Governance
+
+Data governance ensures that data within the Data Analytical Platform (DAP) is managed according to best practices and regulatory standards. It focuses on maintaining data quality, ensuring compliance, and setting up data access, management, and usage policies. In using data governance while adapting it to be used on the City of Vancouver’s Data Analytic Platform, the use of AWS Glue and AWS Lake Formation provided a solid foundation to manage the data assets and its controls for access. AWS Glue was used to store all datasets, and crawlers automatically crawled through the data in S3 to classify datasets and provide unified metadata. This catalog also helps in the discovery and organization of data. Then, AWS Lake Formation was used to manage access, meaning different users had different permissions to access the data lake.
+
+Furthermore, IAM policies were extended to Lake Formation to enhance the policy controls and allow access only to the required data. AWS CloudWatch was configured to log all data access operations for added auditability. This form of governance ensures that available data in the platform should only be accessed, managed, and reviewed by the appropriate staff and properly for compliance purposes.
+
+**Figure 2.5**  
+AWS Glue Data Catalog: After Running the Crawler
+![image](https://github.com/user-attachments/assets/7a4e85d7-d80a-468c-9422-c63833cf676d)
+**Figure 2.6**  
+Data Lake Permissions
+![image](https://github.com/user-attachments/assets/7173f947-1cbf-4d9f-9ab7-47c7b577050b)
+**Figure 2.7**  
+CloudWatch Log Events
+![image](https://github.com/user-attachments/assets/18bd8e2d-1ab6-43f2-b556-71524e38f076)
+
 
 
 
