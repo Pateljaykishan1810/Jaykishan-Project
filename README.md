@@ -1,5 +1,15 @@
 <div align="center" style="font-weight: bold;">
 
+
+
+
+
+![image](https://github.com/user-attachments/assets/baf0055b-0de8-4a73-a9c0-aba0db6d3c04)
+
+
+
+
+
 **Project - Part 1**
 
 **AWS Data Analytic Platform for The City of Vancouver**
@@ -11,7 +21,7 @@
 **University Canada West**  
 **BUSI 653: Cloud Computing Technologies (HBD-SUMMER24-07)**  
 **Mahmood Mortazavi Dehkordi**  
-**September 15, 2024**
+**August 27, 2024**
 
 </div>
 ---
@@ -676,15 +686,29 @@ Tillu, J. (2024, May 12). Understanding Amazon S3 storage classes. Medium. [http
 
 
 
-<p align="center">
-  <strong>Project - Part #2</strong>  
-</p>
-<p align="center">
-  <strong>AWS Data Analytic Platform for The City of Vancouver</strong>  
-</p>
-<p align="center">
-  <strong>September 15, 2024</strong>  
-</p>
+
+
+
+
+
+
+<div align="center" style="font-weight: bold;">
+
+**Project - Part 2**
+
+**AWS Data Analytic Platform for The City of Vancouver**
+
+<br><br>
+
+**Jaykishan Ashokkumar Patel (2237183)**
+
+**University Canada West**  
+**BUSI 653: Cloud Computing Technologies (HBD-SUMMER24-07)**  
+**Mahmood Mortazavi Dehkordi**  
+**September 15, 2024**
+
+</div>
+
 
 Contents
 Introduction ................................................................. 4
