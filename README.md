@@ -1,6 +1,7 @@
 <!-- Centered Cover Page -->
 
 <div align="center">
+#![image](https://github.com/user-attachments/assets/4da5e257-d14e-4a32-8304-98939b0d2037)
 
 # Project - Part #1  
 ## AWS Data Analytic Platform for The City of Vancouver  
