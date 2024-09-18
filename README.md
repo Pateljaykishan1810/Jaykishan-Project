@@ -956,9 +956,164 @@ Business-BusinessLicence-Gurleen - ETL Pipeline Implementation for DQDP
 **Figure 3.11**
 Business-BusinessLicence-Gurleen - ETL Pipeline Implementation for DQDP
 ![image](https://github.com/user-attachments/assets/2c1f3f60-cd72-4871-ad62-eedd94d4507d)
-Figure 3.12
+**Figure 3.12**
 Business-BusinessLicence-Gurleen - Full overview of ETL Pipeline Implementation for DQDP
 ![image](https://github.com/user-attachments/assets/cb8b5e15-a935-42c4-b67e-f97f931ef6ff)
+Figure 3.13
+Business-BusinessLicence-Gurleen - Job run for ETL Pipeline
+![image](https://github.com/user-attachments/assets/0df21594-2e72-444a-9df6-c48c1c9b28a9)
+Figure 3.14
+Business-BusinessLicence-Gurleen - ETL Pipeline Implementation Result
+![image](https://github.com/user-attachments/assets/b4aa6d55-e96a-4f6b-9dba-1638e377efb7)
+**Step 17: Data Monitoring**  
+**Monitoring and Auditing with CloudWatch and CloudTrail**  
+To ensure data security and cost management, I set up monitoring with CloudWatch and audit logging with CloudTrail.  
+Firstly, designed it in draw.io.
+
+**Figure 3.15**  
+Business-BusinessLicence-Gurleen - Cloud Watch design in draw.io
+![image](https://github.com/user-attachments/assets/8599fda8-6afb-4977-a7e6-4944aadbf45d)
+**Monitoring Cost and Storage Usage with CloudWatch**  
+To monitor the project's cost and storage usage, I created a dashboard that keeps in check two metrics: EstimatedCharges and NumberOfObjects. The EstimatedCharges metric ensures time series of charges utilized in the project, whereas NumberOfObjects, used for specific services like Amazon S3, tracks the number of objects in S3 over the last month. This setup enables me to monitor both cost and storage usage for my project.
+
+**Figure 3.16**  
+Business-BusinessLicence-Gurleen - Creating Dashboard
+![image](https://github.com/user-attachments/assets/0b7f822e-462b-41c2-8454-7422922761f0)
+**Figure 3.17**
+Business-BusinessLicence-Gurleen - Dashboard creation result
+![image](https://github.com/user-attachments/assets/71237a31-9053-433d-8bce-7ce676aa58a0)
+Figure 3.18
+Business-BusinessLicence-Gurleen - Metric and conditions specified
+![image](https://github.com/user-attachments/assets/a210e346-e2cb-406c-aca1-51cfbd18bcbe)
+![image](https://github.com/user-attachments/assets/9aff296f-ba62-4ca9-a5df-907d5b9a570c)
+Figure 3.19
+Business-BusinessLicence-Gurleen - Metrics for estimated charges and No.of objects
+![image](https://github.com/user-attachments/assets/441478cb-578a-4a12-b8e9-fd44ccdb2be6)
+Figure 3.20
+Business-BusinessLicence-Gurleen - Resource Usage Metrics
+![image](https://github.com/user-attachments/assets/51eb1878-e16c-4c4b-82fe-8dd7eab276b2)
+**Configuring Alarms for Cost Management**  
+I created an alarm in CloudWatch to track the project's estimated charges and resource usage. The alarm is set to trigger within a time frame of 6 hours when the EstimatedCharges is equal to or greater than $35. If this number exceeds the specified threshold, an email notification will be sent so that timely action can be taken to manage the project's budget.
+
+**Configuring Alarm Notifications**  
+I configured alarm notifications and added my email address to receive notifications if my cost usage exceeds $35.
+
+**Figure 3.21**  
+Business-BusinessLicence-Gurleen - Configuring alarms
+![image](https://github.com/user-attachments/assets/e3c2172b-1cc5-4326-9cc4-24913ad561e4)
+Figure 3.22
+Business-BusinessLicence-Gurleen - Alarm creation result
+![image](https://github.com/user-attachments/assets/edc40807-d078-4455-89a6-bec79ac7b99b)
+**Monitoring AWS Resources with CloudTrail**  
+I created a new trail in CloudTrail named business-businesslicence-trail-gurleen, setting up a log bucket and folder, an AWS KMS alias, and enabling SSE-KMS encryption. This allows for continuous monitoring of all actions and changes regarding AWS resources, ensuring transparent and secure access to logs and blocking unauthorized access to sensitive log data.
+
+**Benefits of Monitoring and Audit Logging**  
+By setting up monitoring with CloudWatch and audit logging with CloudTrail, I can track all activities and access within the AWS account. CloudWatch allows tracking usage, performance, and billing metrics, while CloudTrail provides a record of all actions and changes regarding AWS resources. Data security and cost management within the project can be ensured using these AWS services.
+
+**Figure 3.23**  
+Business-BusinessLicence-Gurleen - Creating Trail
+![image](https://github.com/user-attachments/assets/d8fd6de8-c23a-4ae8-bf22-18d9d80e9db6)
+Figure 3.24
+Business-BusinessLicence-Gurleen - Trail creation result
+![image](https://github.com/user-attachments/assets/ba35b369-0491-4fd2-a1d4-3bc73fa62079)
+Figure 3.25
+Business-BusinessLicence-Gurleen - Cloud trail logs
+![image](https://github.com/user-attachments/assets/8d58b94a-bc19-426f-b3e7-af071e8c6542)
+Figure 3.26
+Business-BusinessLicence-Gurleen - Trail final output
+![image](https://github.com/user-attachments/assets/978d8146-c124-4db2-96b2-fc3a6963a7ae)
+**Dataset 4: Rental Standards**  
+**DAP Design and Implementation (Steps 15-17)**
+
+**Step 15: Data Protection**  
+Identity and Access Management (IAM) on AWS is used for data protection to control access. IAM enables you to create policies as to which user/service is allowed to have access to what resource such as S3 buckets or EC2 instances, hence limiting the access of sensitive data to unauthorized persons. As you know, the principle of least privilege represents the approach in which only the necessary permissions are assigned to user or role, and thus minimizing the threat to the data.
+
+**Figure 4.1**  
+Data Protection
+![image](https://github.com/user-attachments/assets/92c53012-b3f4-4aa4-a093-8ec1ebb80dc9)
+**Step 16: Data Governance**  
+AWS Glue is specifically helpful in data governance as it comes with features that help in extracting, transforming, and loading data from different sources. Its features automate compliance, data security, and data standard in data lakes and every other AWS ecosystem. In other words, AWS Glue Data Catalog is used as a central location for dataset information. It intelligently crawls data from different sources including Amazon S3, RDS, Redshift, and other related sources and stores the data with related information such as schema, format, and location.
+
+**Figure 4.2**  
+Data Governance
+![image](https://github.com/user-attachments/assets/b7f92709-c994-4517-846f-02de520b0efe)
+**Step 17: Data Monitoring**  
+Data monitoring is achieved through features in DataBrew that are intended for data profiling, validation, and transformation in order to detect and correct anomalies in the data preparation process. As a tool, it allows for the quantification and pre-processing of data, which should be clean before data analytics or even before the implementation of machine learning.
+
+**Figure 4.3**  
+Data Monitoring
+![image](https://github.com/user-attachments/assets/720ff15d-c56a-4bc5-a89f-4e510973bbb8)
+**DAP Architecture Analysis (Teamwork)**  
+The City of Vancouver's architectural framework, which utilizes the Data Analytics Platform, is profoundly assessed and conforms to the AWS Well-Architected Framework. This assessment guarantees that the platform achieves key performance, security, reliability, cost efficiency, and sustainability indicators according to best practices and standards.
+
+1. **Operational Excellence**  
+When it comes to AWS Cloud and DAP architecture, operational excellence is the ability to execute workloads efficiently, obtain insights into the workflows, and improve work execution over time. First, the operational excellence of AWS Well-Architected Framework offers the best practices that must be implemented in any DAP architecture.
+
+**Evaluation Areas for Operational Excellence**  
+- **Monitoring and Logging:** CloudWatch helps monitor data pipelines and operational issues. Logs from all components of the DAP are aggregated into a central logging solution, such as AWS CloudTrail or third-party logging tools. This assists in supervising the access and operation events that occur in the architecture.
+- **Automation and Consistency:** Automation is being applied for infrastructural management. Some of the tools that can be harnessed in deploying consistent environments are AWS CloudFormation or even Terraform. Other services like Amazon EC2 Auto Scaling, AWS Lambda, or AWS Fargate which were used to automatically scale the system dynamically depending on the traffic intensity. Auto-scaling works to improve operational excellence in that it adapts to traffic and load.
+- **Change Management and Continuous Improvement:** The DAP employs actionable codebase in developing the infrastructure where version control is employed. Version control should be done using AWS CodeCommit or Git and other such tools. CI/CD is also integrated there, and it is stated that there are automations when it comes to deployments and testing. GitHub Auto-merge and AWS CodeDeployment should help prevent issues like pipeline failures to avoid problems such as those faced with AWS CodePipeline or Jenkins.
+
+2. **Security**  
+Security is strongly emphasized in AWS data access point DAP architecture because data, systems, and workloads require protection. AWS proposes a model of shared responsibility in which Amazon is responsible for security at the cloud level and the users responsible for security in the cloud.
+
+**Evaluation Areas for Security**  
+1. **Identity and Access Management (IAM)**  
+   - **Access Control:** Make certain that only those users or services that require data and components within the DAP should be allowed to access such.
+   - **Multi-Factor Authentication (MFA):** AWS IAM MFA places another form of security blanket.
+
+2. **Encryption**  
+   - **Data Encryption at Rest:** AWS KMS should be used for encrypting and managing keys because of its capacity for highly secure storage of encryption keys.
+   - **Data Encryption in Transit:** TLS (Transport Layer Security) should be used in providing security to data in transit from clients to the services.
+
+3. **Security Auditing and Compliance**  
+   - **Auditing with AWS CloudTrail:** This makes it possible for you to track in your audits, who accessed what, at any given time.
+   - **AWS Config:** Is the AWS Config and AWS Config Rules used to perform the continuous evaluation of resource configurations against the best practices for information security and compliance?
+
+3. **Reliability**  
+The reliability of the AWS DAP platform of the City of Vancouver involves a major concentration on different aspects. Evaluation of the Reliability of DAP based on the AWS Well-Architected Framework will involve several aspects such as workload architecture, change management, and failure management.
+
+**Key Reliability Design Principles Applied in DAP**  
+1. **Automatically Recover from Failure:** In the DAP for the City of Vancouver, there are specific features that enhance the capacity to recover from failure. AWS CloudTrail and CloudWatch logging and monitoring have been put in place to baseline all activities and changes continuously in the AWS resources involved. These provide real-time insight, with automation responses to thresholds and anomalies, to enable the platform to bounce back swiftly and efficiently in the event of an interruption.
+2. **Test Recovery Procedures:** The project gives various recovery procedures through constant monitoring and testing that goes on across different environments. These recovery processes further validate the reliability of some of the key parts of the system, which include AWS Glue, EC2, and S3. Testing on these components ensures that points that can be potential failures are flagged off and thereby not allowed to make disturbances to the platform.
+3. **Scale Horizontally to Increase Aggregate Availability:** The server can horizontally scale with large volumes of data and traffic by using Amazon S3 for scalable data storage and leveraging EC2 to publish the web application. The design enhances the system's availability since it spreads resources and workload over many instances.
+4. **Stop Guessing Capacity:** The system utilizes Amazon CloudWatch, a real-time resource usage monitoring tool that exhibits visibility crucial for scaling resources based on demand. This ensures that the platform operates efficiently without overloading a single component or running into capacity constraints.
+5. **Manage Change in Automation:** The DAP enjoys automation for ETL processes using AWS Glue and SQL querying on data residing in S3 using AWS Athena. This automation of the system reduces manual intervention to a minimum, hence adapting to changes faster with minimal errors.
+6. **Resilience and Fault Tolerance:** Encryption for the logs is secured by AWS KMS, while AWS EC2 ensures that the web servers are up and running; thus, there is durability in cases of security breaches or data corruption. Logs can be safely stored within AWS S3 buckets with enabled encryption of them, hence enhancing integrity and compliance.
+
+In a nutshell, the Reliability of DAP is ensured by the application of principles afforded by the reliability pillar of AWS’s Well-Architected Framework. With automatic recovery mechanisms, real-time monitoring, and secure data managing practices, DAP is highly reliable to function efficiently, fail quickly, and recover.
+
+4. **Performance Efficiency**  
+We can consider the following analysis based on the Performance Efficiency Pillar of the AWS Well-Architected Framework to assess the performance efficiency of the DAP project:
+
+**Performance Efficiency Analysis**  
+1. **Compute Resources:** The project leverages AWS EC2 Instances, and cloud virtual servers to publish data, featuring resizable compute capacity. This means that one would need to choose an instance type, say t2.micro, for those instance types, which offer the most cost-efficient and optimal solution during content delivery. It will scale up or down as required by workload demand. Doing so would keep things flexible by scaling or minimizing based on the jittery traffic loads received without over-provisioning resources.
+2. **Storage Resources:** Amazon S3 is a basic storage resource that provides durable and scalable storage. S3 will host large-size datasets required for the data needs of the platform. This ensures that any increase in the volume of data, for instance, will have S3 scaling automatically. The data is also structured and cleaned using AWS Glue to high efficiency during processing and access.
+3. **Data Processing Efficiency:** AWS Glue is used, which automates ETL by extracting, transforming, and loading data. Glue will clean and prepare the data with minimum human interaction, which reduces the processing time and resources. The analytics for the data are performed via Amazon Athena, a serverless service that makes it easy to query data in S3 without managing the underlying infrastructure, hence adding efficiency.
+4. **Monitoring and Scaling:** Amazon CloudWatch will be set up to track resource utilization and performance, enabling real-time metrics that will provide automatic scaling triggers. The monitoring ensures that the system can scale horizontally, changing resources according to current demand, thus avoiding performance bottlenecks and optimizing costs.
+5. **Data Visualization:** For the project, DAP mainly deals with developing insights from raw data into interpretable formats stakeholders can make use of. For this project, data stored in S3 had been queried through Amazon Athena, while the necessary infrastructure hosting these visualizations was provided by Amazon EC2. These utilities enable the making of better decisions through the representation of complex data in a neatly digestible form: visualize-through dashboards and reports the team can track against to maintain service performance and patterns in a visually appealing fashion.
+
+In a nutshell, the DAP project follows best practices, ensuring that architectures are performant even at scale they use scalable storage (Amazon S3), efficient data processing (AWS Glue and Athena), optimized computing (EC2), and real-time monitoring (CloudWatch).
+
+5. **Cost Optimization**  
+AWS cost optimization is done using various AWS services where required. S3 Intelligent Tiering is smart as it moves seldom-accessed data to the more affordable storage tiers while ensuring that such data is accessible without incurring expenses (AWS, 2024). This inexpensive approach extends to using AWS Cost Explorer, where one can assess real-time usage and the amount spent on resources (AWS Cost Explorer, 2024). Checking the effectiveness of the work with the help of these indicators is possible through their periodic analysis. Therefore, the team can find and exclude waste, which must be a priority when working on the platform, to achieve the set goal and, at the same time, save money. Utilizing other application-layer services, such as AWS SNS and AWS Cognito, will contribute to cost savings even more. Subsequent initiatives should center on procuring additional managed services and fine-tuning cost optimization strategies as the spread of the platform widens.
+
+6. **Sustainability**  
+Finally, sustainability is integrated into the DAP through serverless architectures and auto-scaling, which only utilize computing resources in a way that is required to reduce energy costs and consumption. AWS Lambda and all other services under the AWS business implement the notion of reserved compute capacity only for running applications, thereby minimizing wasted time and energy. It also achieves efficiency by doing away with surplus resource consumption while adapting to changes in flow, thereby having a negligible impact on the environment. The lack of server infrastructure in serverless architectures minimizes resource wastage through less or no use of servers. Auto-scaling means that resources are adjusted depending on usage, which helps to avoid providing more resources than necessary and, consequently, less energy consumption. These practices help to decrease the negativity of their imprint on the environment by maintaining the conservative use of resources and the carbon emissions related to the functioning of the clouds (Amazon Web Services, 2024). However, its platform lacks fault tolerance and scalability features, which must be incorporated into further development plans. Optimizations should lie in defining what constitutes a backup instance and in preemptively adding infrastructure to sustain future growth and availability.
+
+Thus, the Data Analytics Platform for the City of Vancouver proposes a comprehensive solution to meet performance, security, reliability, cost optimization, and sustainability challenges. Using the AWS Well-Architected Framework, the platform is created to efficiently satisfy present tasks and yet be ready to embrace future demands.
+**References**
+
+- Amazon Athena. (2024). *Amazon Athena*. Retrieved from [https://aws.amazon.com/athena/](https://aws.amazon.com/athena/)
+- Amazon Web Services. (2024). *Using server-side encryption with Amazon S3 managed keys (SSE-S3) - Amazon Simple Storage Service*. Retrieved from [https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html)
+- AWS CloudTrail. (2024). *What is AWS CloudTrail?*. Retrieved from [https://aws.amazon.com/cloudtrail/](https://aws.amazon.com/cloudtrail/)
+- AWS Cost Explorer. (2024). *AWS Cost Explorer*. Retrieved from [https://aws.amazon.com/aws-cost-management/aws-cost-explorer/](https://aws.amazon.com/aws-cost-management/aws-cost-explorer/)
+- AWS. (2022). *Replicate Data within and between AWS Regions Using Amazon S3 Replication*. Retrieved from [https://aws.amazon.com/getting-started/hands-on/replicate-data-using-amazon-s3-replication/](https://aws.amazon.com/getting-started/hands-on/replicate-data-using-amazon-s3-replication/)
+- AWS. (2024). *Amazon S3 Intelligent-Tiering Storage Class | AWS*. Amazon Web Services, Inc. Retrieved from [https://aws.amazon.com/s3/storage-classes/intelligent-tiering/#](https://aws.amazon.com/s3/storage-classes/intelligent-tiering/#)
+- Home — City of Vancouver Open Data Portal. Retrieved from [https://opendata.vancouver.ca/pages/home/](https://opendata.vancouver.ca/pages/home/)
+- *Performance Efficiency - AWS Well-Architected Framework*. (2 July 2020). Retrieved from [https://wa.aws.amazon.com/wellarchitected/2020-07-02T19-33-23/wat.pillar.performance.en.html](https://wa.aws.amazon.com/wellarchitected/2020-07-02T19-33-23/wat.pillar.performance.en.html)
+- *Reliability - AWS Well-Architected Framework*. (2 July 2020). Retrieved from [https://wa.aws.amazon.com/wellarchitected/2020-07-02T19-33-23/wat.pillar.reliability.en.html](https://wa.aws.amazon.com/wellarchitected/2020-07-02T19-33-23/wat.pillar.reliability.en.html)
+- Website Design Company in Bangalore | SEO Agency. (2024, May 30). *AWS Cross-Region Data Replication*. Retrieved from [https://echopx.com/aws-cross-region-data-replication/#](https://echopx.com/aws-cross-region-data-replication/#)
 
 
 
