@@ -518,6 +518,163 @@ Then, I clicked on SCHEMA in AWS Glue DataBrew to review the structure of the da
 Afterward, I created a job to finalize the structuring process, storing the newly organized dataset in the appropriate Raw folder of the S3 bucket year 2024.
 ![image](https://github.com/user-attachments/assets/a8c673b4-e0e7-42ee-8f87-c1655f55880b)
 Picture 19: Data Structuring
+## Step 10: Data Pipeline Implementation
+
+In this step, I began by creating a new AWS Glue job, naming it `AniContrl-LostInfor-ETL-ThiThuThao`. 
+
+I added several features to the ETL process:
+- **Aggregate and filter function:** to focus on relevant information.
+- **Rename columns and standardize formats:** to ensure consistency.
+- **Join function:** to merge datasets where necessary to enrich the data.
+
+After completing the ETL process, the final, cleaned, and transformed data was saved back into a new S3 bucket under the Curated folder. Additionally, the transformed data was stored in the `Lost-Animal-Information-Reports` folder.
+![image](https://github.com/user-attachments/assets/7ca6962b-d80a-4351-8e6b-a08c74612415)
+Picture 20: Data Pipeline Implementation
+![image](https://github.com/user-attachments/assets/9651f387-a438-4d1a-804e-ced3beb683ba)
+Picture 21: Data Pipeline Implementation - Curated folder
+Step 11: Data Analysis
+In this step, I used Amazon Athena to analyze the curated data from the Lost and Found Animal project.
+•	Firstly, I created a new table named animalcontrol_lostandfound_table19_lamthithuthao 
+•	Then, I created a new database named: animalcontrol_lostandfound_database19_lamthithuthao
+•	The dataset used was from the Lost-Animal-Information-Reports folder within the Curated directory.
+•	The table included key columns such as Year and APR (Annual Percentage Rate)
+After setting up the table, I ran several queries to extract insights. For instance, I queried the database to list all lost animal records, sorted by their unique ID
+![image](https://github.com/user-attachments/assets/dfc801be-0dfa-4667-badf-d9740dc82ed9)
+Picture 22: Data Analysis – Amazon Athena
+Step 12: Data Visualization
+In this final step, I focused on visualizing the results of the Lost Animal Reporting Rate analysis. The process was as follows:
+•	I downloaded the APR_Per_Year.csv file (in step 11), which contains the Animal Reporting Rate (APR) for the year 2024, and uploaded it to a Google Excel
+•	Using Google Sheets, I created a simple bar chart to represent the APR value visually. The bar chart displayed the APR on the X-axis and the year 2024 on the Y-axis.
+•	After finalizing the visualization, I exported the Google Excel document as a PDF file, ensuring that the report was easy to share and present.
+•	The file was named Graph Report_LamThiThuThao.pdf to reflect its content and origin
+![image](https://github.com/user-attachments/assets/587456dc-d6f3-40af-be77-5a6f4e3e2cbe)
+Picture 23: Data Visualization
+## Step 13: Data Publishing
+
+This step ensures that the analytical results are accessible to team members or stakeholders who need to view or use the data for decision-making or further analysis. For this, I utilized AWS EC2.
+
+First, I created two EC2 instances, both running the Windows operating system:
+- **The first instance** is named: `animalcontrol-lost&found-GeneralServer-lamthithuthao`
+- **The second instance** is named: `animalcontrol-lost&found-WebServer-lamthithuthao`
+
+Since I am using a MacBook laptop, I connected to these instances using the Microsoft Remote Desktop protocol service. This enabled me to remotely configure and operate the servers, as well as access the necessary files.
+
+The reports, including Graph Reports and CSV files, are hosted on these EC2 instances. By sharing the public IP address, these reports can be accessed and used by individuals with the appropriate credentials.
+![image](https://github.com/user-attachments/assets/514d8498-1163-486d-b85a-f3ff0b3484e3) Picture 24: Data Publishing - EC2
+![image](https://github.com/user-attachments/assets/005cb6cb-19d5-42b9-bd78-713524fbf12d) Picture 25: Data Pushlishing - General Server
+## Step 13: Data Publishing
+
+This step ensures that the analytical results are accessible to team members or stakeholders who need to view or use the data for decision-making or further analysis. For this, I utilized AWS EC2.
+
+First, I created two EC2 instances, both running the Windows operating system:
+- **The first instance** is named: `animalcontrol-lost&found-GeneralServer-lamthithuthao`
+- **The second instance** is named: `animalcontrol-lost&found-WebServer-lamthithuthao`
+
+Since I am using a MacBook laptop, I connected to these instances using the Microsoft Remote Desktop protocol service. This enabled me to remotely configure and operate the servers, as well as access the necessary files.
+
+The reports, including Graph Reports and CSV files, are hosted on these EC2 instances. By sharing the public IP address, these reports can be accessed and used by individuals with the appropriate credentials.
+![image](https://github.com/user-attachments/assets/a1d023b6-4aab-4268-adcf-5b34e0e17516)
+## Step 2: Data Discovery
+
+Data discovery in AWS involves identifying, classifying, and analyzing data resources within your AWS environment. For this project, AWS Glue Data Catalog is utilized as a serverless metadata management service. It helps in storing metadata for your data assets and has the capability to identify and index data from various sources. This ensures that all relevant datasets are properly cataloged and can be easily accessed for further analysis.
+![image](https://github.com/user-attachments/assets/4127e33d-01e6-4f2a-9915-66680428e5ee)
+## Step 3: Data Storage Design
+
+Amazon S3 (Simple Storage Service) is ideal for storing large volumes of unstructured data, such as logs, backups, and media files. The focus in this step is on choosing the appropriate storage services and structuring the data in a way that ensures scalability, security, and cost-effectiveness. By using Amazon S3, you can effectively manage data growth and maintain security while optimizing for costs.
+![image](https://github.com/user-attachments/assets/c7cf2d2d-0f02-48c7-b533-427cbc9c03f5)
+## Step 4: Dataset Preparation
+
+AWS Glue DataBrew is a visual data preparation tool that allows users to clean, transform, and prepare data for analytics without needing to write code. It provides a user-friendly environment to interact with the data, perform necessary transformations, and evaluate the quality of datasets, making it easier to get data ready for analysis.
+![image](https://github.com/user-attachments/assets/062aab2d-2449-4355-82ae-ca8806470b9a)
+## Step 5: Data Ingestion
+
+AWS Glue is a serverless ETL tool that facilitates data extraction, transformation, and loading for data analysis. It pulls data from various sources, ingests and transforms it as required, and then loads it into a data sink such as Amazon S3, Amazon Redshift, or a relational database.
+![image](https://github.com/user-attachments/assets/7f19b239-60b6-4d07-9549-bc1c85b74ad6)
+## Step 6: Data Storage
+
+Amazon S3 allows the creation of buckets for storing data files, including databases and CSV files used in analysis. These buckets provide scalable and secure storage solutions to manage large volumes of data efficiently.
+![image](https://github.com/user-attachments/assets/0f89d0c0-4cf4-41b2-9afd-7b405e3000b7)
+## Step 7: Data Pipeline Design
+
+To design a data pipeline in AWS using Amazon S3, several steps are involved, and various AWS services are utilized to transfer, process, and analyze data.
+![image](https://github.com/user-attachments/assets/649e1b89-b7b2-482b-8eb6-8da86d26ebee)
+## Step 8: Data Cleaning
+
+AWS Glue DataBrew is an interactive data preparation tool that helps in cleaning and transforming data without the use of code. DataBrew also performs an analysis of the data set to give information on the quality of the data. It helps to detect problems like missing values, outliers, duplicate values, and distribution of data.
+![image](https://github.com/user-attachments/assets/6322d451-9b17-40fb-80bd-cb4d24038a5f)
+## Step 9: Data Structuring
+
+Organizing data in Amazon S3 is very important for storage, retrieval and analysis of data especially when dealing with big data. First, it is recommended to use the meaningful and unique names for your S3 buckets. Bucket names are unique across all AWS users, so it is advisable to incorporate your organization name, project, or environment into the bucket name.
+![image](https://github.com/user-attachments/assets/b34a2ea2-181b-44e8-8e36-54acc46d7a0c)
+## Step 10: Data Pipeline Implementation
+
+The data pipeline using Amazon S3 in AWS entails several services to transfer, process, and analyze data. S3 is the storage foundation of the data pipeline. It can store original data, data that has been analyzed, and data that has been selected for specific use.
+![image](https://github.com/user-attachments/assets/b6d42406-0b6e-4d1b-bbe7-7e86f5ae8155)
+## Step 11: Data Analysis
+
+Amazon Athena is an AWS service that provides the ability to query data in Amazon S3 using standard SQL. It is serverless, and you do not have to worry about any infrastructure or hardware, and you only pay for the queries that you perform.
+![image](https://github.com/user-attachments/assets/03eb2c41-3747-44a8-a558-9f3444aa8627)
+## Step 12: Data Visualization
+
+Amazon QuickSight is a BI tool that allows users to create and share ad-hoc reports and dashboards without any need for IT intervention. It works well with other AWS services and supports several data types.
+![image](https://github.com/user-attachments/assets/e94475c3-3235-45e6-9f18-ddeddc8e274f)
+## Step 13: Data Publishing
+
+Amazon EC2 is one of the basic services offered by AWS which provides resizable computing capacity in the cloud. It is widely used in many situations such as in publishing and delivery of content. EC2 provides flexibility to the publishers to select the operating system, storage, and instance type of their choice. This flexibility is crucial in order to achieve the best results and at the same time, minimize the expenses.
+![image](https://github.com/user-attachments/assets/f57992c9-163a-4aa2-bed3-f8e60a025667)
+## DAP Estimated Cost (Teamwork)
+
+To estimate the cost of the dataset preparation phase for the above-listed projects using the AWS pricing calculator, we broke down the services used and their respective costs. The services in use include Amazon S3, AWS Glue, Amazon Athena, and Amazon EC2.
+
+- **Amazon Simple Storage Service (S3)**
+  - **Storage Used**: 527.9 GB per month
+  - **Cost Estimate**: 12.14 USD per month
+
+- **AWS Glue**
+  - **DPUs Used**: Number of DPUs for Apache Spark job (10) and Number of DPUs for Python Shell job (5)
+  - **Cost Estimate**: 0.14 USD per month
+
+- **Amazon Athena**
+  - **Queries and Data Scanned**: Total number of queries (7 per month), Amount of data scanned per query (varies)
+  - **Cost Estimate**: 9.99 USD per month
+
+- **Amazon EC2**
+  - **Instance Types**: t2.micro
+  - **Cost Estimate**: 12.21 USD per month
+
+**Total Estimated Cost for Dataset Preparation Phase:**
+- **Monthly Cost**: 34.48 USD
+- **Total 12 Months Cost**: 413.76 USD
+![image](https://github.com/user-attachments/assets/74765a38-d045-4d4a-8f9f-22cb34b22efa)
+Picture 26: DAP Estimated Cost
+## Conclusion
+
+In conclusion, the approach for designing and implementing the Data Analytic Platform for different datasets from the City of Vancouver has been provided, including data ingestion, data cleaning, data structuring, and data analysis with AWS services. The platform supports the reception, storage, and analysis of service requests to help improve decision-making and, consequently, waste management in Vancouver. The implementation also used AWS Glue for ETL activities, S3 for scalable data storage, Amazon Athena for abstract and robust data analysis, and Elastic Compute Cloud (EC2) instances with Apache for data dissemination. It is convenient to state that the project is relatively affordable, with a total estimated annual cost of 413.76 USD, thus making the platform affordable and scalable for the clients. This procedural platform puts City of Vancouver at a more strategic vantage point to address the community's needs, thereby escalating efficiency in service provision and environmental conservation.
+## References
+
+3-1-1 service requests. (2024). Home — City of Vancouver Open Data Portal. [https://opendata.vancouver.ca/explore/dataset/3-1-1-service-requests/information/?disjunctive.department&disjunctive.service_request_type&disjunctive.status&disjunctive.closure_reason&disjunctive.local_area&disjunctive.channel&refine.service_request_type=Abandoned+Non-Recyclables-Small+Case](https://opendata.vancouver.ca/explore/dataset/3-1-1-service-requests/information/?disjunctive.department&disjunctive.service_request_type&disjunctive.status&disjunctive.closure_reason&disjunctive.local_area&disjunctive.channel&refine.service_request_type=Abandoned+Non-Recyclables-Small+Case)
+
+Akram, B. (2024, February 20). What is data cleaning? LinkedIn. [https://www.linkedin.com/pulse/what-data-cleaning-bushra-akram-cegxf#](https://www.linkedin.com/pulse/what-data-cleaning-bushra-akram-cegxf#)
+
+Amazon Web Services. (2024). What is Amazon EC2? [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
+
+AWS. (2024). What is AWS glue DataBrew? [https://docs.aws.amazon.com/databrew/latest/dg/what-is.html#](https://docs.aws.amazon.com/databrew/latest/dg/what-is.html#)
+
+Hernandez, J. (2019, May 8). What is Apache? In-depth overview of Apache web server. Sumo Logic. [https://www.sumologic.com/blog/apache-web-server-introduction/](https://www.sumologic.com/blog/apache-web-server-introduction/)
+
+IMD - International Institute for Management Development. (2024, June 5). Descriptive analytics: Importance, benefits, & examples. IMD Business School for Management and Leadership Courses. [https://www.imd.org/blog/digital-transformation/descriptive-analysis/#](https://www.imd.org/blog/digital-transformation/descriptive-analysis/#)
+
+Kiely, T. J. (2023, March 27). The fundamentals of data structuring. Meltwater. [https://www.meltwater.com/en/blog/data-structuring](https://www.meltwater.com/en/blog/data-structuring)
+
+Mucci, T., & Stryker, C. (2024). What is data ingestion? IBM - United States. [https://www.ibm.com/think/topics/data-ingestion#:~](https://www.ibm.com/think/topics/data-ingestion#:~)
+
+Nem, R. (2024). Amazon Simple Storage Service (Amazon S3). Community.aws. [https://community.aws/content/2c6dBEmQPpXeGxBxdu0EHkXPXpC/amazon-simple-storage-service-amazon-s3?lang=en#](https://community.aws/content/2c6dBEmQPpXeGxBxdu0EHkXPXpC/amazon-simple-storage-service-amazon-s3?lang=en#)
+
+Recycle BC. (2024, May 5). About Recycle BC. [https://recyclebc.ca/about/](https://recyclebc.ca/about/)
+
+Stryker, C. (2024). What is a data pipeline? IBM - United States. [https://www.ibm.com/topics/data-pipeline#:~](https://www.ibm.com/topics/data-pipeline#:~)
+
+Tillu, J. (2024, May 12). Understanding Amazon S3 storage classes. Medium. [https://jaytillu.medium.com/understanding-amazon-s3-storage-classes-15b7065cd080](https://jaytillu.medium.com/understanding-amazon-s3-storage-classes-15b7065cd080)
 
 
 
