@@ -265,3 +265,219 @@ Prepare and arrange data from the Open Data Portal for 2023 and 2024.
 **Step 5: Data Ingestion**
 
 
+ 
+ 
+
+Step 6: Data Storage
+Data storage is an essential step in data analytics platforms. It involves storing the collected data into folders of S3 buckets for efficient access and analysis. After gathering data from open data portal, it is then stored to the landing environment of S3.
+
+Step 6: Data Storage
+ 
+
+Step 7: Data Pipeline Design
+	The Data Pipeline design step is about planning how data will travel through the system, from where it starts to where it ends up. This includes deciding how data will be collected, processed, changed, and stored. The aim is to make sure data moves smoothly and is ready for analysis. I created visual representation of my ETL pipeline in draw.io using tables showing various stages of my design such as removing, filtering, extracting and grouping stage and then finally, reaching to my final outcome table showing “Licence Issuance Rate” calculations for year 2024 and 2023.
+
+Step 7: Data Pipeline Design
+     
+
+Step 8: Data Cleaning
+In this step cleaned up the dataset of business licences application records in an AWS S3 bucket. The steps involve creating raw folder inside landing zone and and then using a data cleaning tool called AWS Glue DataBrew, I created a project. The project then cleaned the data by removing invalid, null or missing values using function feature inside it depending upon the percentage of missing values in the column, which will ensure the accuracy of any future analysis performed on the data. If had more than 80% missing values, I dropped that column because it was of no use.
+
+Step 8: Data Cleaning
+ 
+ 
+
+Step 9: Data Structuring
+	In this step, I arranged my data in structured manner meaning renamed columns names with relevant names with respect to the information they hold in them. Furthermore, I configured “Schema” in AWS Glue DataBrew to ensure whether my dataset had relevant datatypes for specific columns and if not changes them accordingly. Furthermore, I created and ran my job and stored the result of my cleaning and structuring inside the raw folder of my S3 bucket.
+
+Step 9: Data Structuring
+ 
+ 
+   
+
+Step 10: Data Pipeline Implementation
+	This step involves creation of visual ETL using AWS Glue service. This step provides us with the summarized information for our analysis. In this step, I fetched data from my raw folder (cleaned and structured data) and then performed certain operations to that dataset to extract specific information. I used aggregation, filter and change schema to retrieve specific information from my dataset. Then I used to join function to group my dataset and performed average calculation on my dataset to get “Licence Issuance Rate” for year 2024 and 2023 using columns “Number of business licence issued per year” and “Total number of business licence applications initiated”.
+Licence Issuance Rate = (Number of business licence issued per year/ Total number of business licence applications initiated) *100
+Finally, I run my job, and my results were stored in the curated folder of my S3 bucket.
+
+Step 10: Data Pipeline Implementation
+     
+ 
+ 
+
+Step 11: Data Analysis
+	The AWS service used for executing this step is Amazon Athena. This step involved analyzing the summarized curated folder data from S3 bucket by creating tables for specific CSV files. The table contained columns such as Year and LIR (Licence Issuance Rate) for the years 2023 and 2024. After table creation, I ran SQL queries to retrieve specific information from the table using SQL “ORDER BY”, “SELECT” and various other queries.
+
+Step 11: Data Analysis
+  
+  
+
+Step 12: Data Visualization
+	In this step, I created visualizations for my Athena downloaded data file for Licence Issuance Rate containing 2024 and 2023 data. I made my visualizations for this step in excel using recommended charts and then downloaded that file in pdf format and renamed it as Graph_Report.
+
+Step 12: Data Visualization
+ 
+ 
+
+Step 13: Data Publishing
+	AWS EC2 service was used to execute this step. This step involved publishing your data files to general and web servers to be accessible by the public. To do this step, I created two EC2 instances, one for general server and another one for web server. For connecting my instances, I used “Remote desktop connection” inbuild software in windows and uploaded my files to remote computer in analysis folder in C-Drive for general server and in wwwroot folder for web server and then using public IP address, I accessed my uploaded files on the web browser.
+
+Step 13: Data Publishing
+ 
+    
+
+Dataset 3: Animal Control - Lost and Found (By Lam Thi Thu Thao)
+DAP Design and Implementation (Steps 1- 13)
+Step 1: Data Analytical Question Formulation
+In the Animal Control department, identify the Data Analysis Question Formulation needs a data analytics platform to find its goal and answer 4 types of data analysis questions regarding lost and found animals. These questions will guide how/what data we collect/process, as well as who or which department analyzes the data. Also, what decisions or actions the City of Vancouver might take based on this analysis?
+
+ 
+Picture 1: Data Analytical Question Formulation
+
+Step 2: Data Discovery
+This includes an in-depth exploration of all operational environments to identify and locate all datasets relevant to answering the questions that will have been formulated in Step 1.
+This includes the identification, assessment, and preparation of datasets for migration to AWS. Specifically:
+•	Lost Animal Information 2023-2024: Information about the animals reported to be lost, together with their descriptions, dates, IDs, names, and statuses.
+•	Vancouver Animal Control Office Analysis: Reports and metrics for internal use on handling lost animal cases.
+•	Register Reports: Time sheets of historical records of cases related to lost animals.
+•	Animal Services Staff Data: Information on the activities of staff, their performance, and preventive measures.
+
+ 
+Picture 2: Data Discovery
+
+Step 3: Data Storage Design
+In Step 3, Data Storage Design focuses on organizing and securely storing datasets in AWS S3. In this step, I set up dedicated AWS S3 buckets to store different types of data related to the Lost and Found Animals domain.
+•	Bucket Name: animalcontrol-lostandfound-lamthithuthao
+•	Folder: Landing/2023 – This could contain subfolders like "Lost Animal Information 2023," "Register Reports," and "Vancouver Animal Control Office Analysis."
+•	Folder: Landing/2024 – Similarly, this would store data for the year 2024, such as "Lost Animal Information 2024" and other relevant datasets.
+
+ 
+Picture 3: Data Storage Design - Landing/2023
+
+ 
+Picture 4: Data Storage Design - Landing/2024
+
+Step 4: Dataset Preparation
+Basically, Data Preparation is the process of organizing and converting in structured format the raw data obtained, which will then make it ready for uploading and analysis on AWS.
+For this, I downloaded the following two Lost and Found Animal data Excel files for the years 2023 and 2024 from the City of Vancouver data website. Due to the rest of the data being unavailable to be extracted for this assignment, I used ChatGPT to obtain the sample data in CSV format, which is created with 10 columns and 5 rows. The sample dataset contains very relevant fields to the needed attributes in analysis, such as animal IDs, report dates, and statuses, among other key fields. Below are the areas these datasets covered:
+•	Animal Services Staff
+•	Analyzing the Vancouver Animal Control Office
+•	Members of Staff in the Vancouver Animal Control Office
+•	Register Reports.
+After generating the sample datasets, I saved all the CSV files in Excel format. In this way, it will facilitate more convenient manipulation, review, or sharing with team members or stakeholders.
+
+ 
+ Picture 5: Dataset Preparation - 2023
+
+ 
+Picture 6: Dataset Preparation - 2024
+
+Step 5: Data Ingestion
+The main objective of Data Ingestion is to successfully and accurately migrate the prepared datasets from Step 4 into their corresponding homes within the AWS - S3 bucket. To ingest data, I followed a technique of uploading the datasets by adding files to previously created folders for each year in the Landing zone: 2023 and 2024. After uploading each dataset, I verified the upload status to ensure that each dataset was uploaded to the correct folder and transferred with no errors.
+
+ 
+Picture 7: Data Ingestion
+
+ 
+Picture 8: Data Ingestion
+
+ 
+Picture 9: Data Ingestion
+
+ 
+Picture 10: Data Ingestion
+
+Step 6: Data Storage
+After successfully completing the upload of the datasets in Step 5, a logical follow-through would be to identify appropriate storage classes in the Properties section depending on usage patterns, helping in finding a balance between cost efficiency and performance regarding data readiness in read and write mode, as may comparatively be required for processing by the City of Vancouver's Animal Control.
+The datasets were organized into specific folders within the S3 bucket structure:
+•	Vancouver Animal Control Office Staff 2024 in Standard class
+•	Vancouver Animal Control Office Analysis 2024 in Standard class
+•	Register Reports 2024 in Standard class
+•	Lost and Found Animal Information 2024 in Standard class
+•	Animal Services Staff 2024 in Standard class
+
+ 
+Picture 11: Data Storage
+
+ 
+Picture 12: Data Storage
+
+ 
+Picture 13: Data Storage
+
+ 
+Picture 14: Data Storage
+
+ 
+Picture 15: Data Storage
+
+Step 7: Data Pipeline Design
+In Step 7, Data Pipeline Design, I created a graphical representation of the ETL process with a Data Lineage Diagram. The diagram illustrates the flow of the data from its extraction stage to the final calculation of the Lost Animal Reporting Rate. I used ChatGPT to create in writing the formula that calculates the metric from the transformed data: Lost Animal Reporting Rate. The final rate output has the benefit of enabling the City of Vancouver to understand how ground-level lost and found animal management processes are effective.
+
+ 
+Picture 16: Lost Animal Reporting Rate Formula
+
+ 
+Picture 17: Data Design Pipeline
+
+Step 8: Data Cleaning
+In this step, I cleaned the Lost Animal Information dataset within the 2024 folder, ensuring that there are no invalid or missing values in the data, which could affect the accuracy of any analysis performed later.
+•	In the 2024 folder in S3 bucket, I created a new folder named Raw.
+•	Inside the Raw folder, I created another folder named Lost_Animal_Information to store the unprocessed data.
+•	Then, I used AWS Glue DataBrew to create a project and set the project name to animalcontrol-lostandfound-cleaning-lamthithuthao
+•	New dataset details: animalcontrol-lostandfound-information-lamthithuthao
+•	Selected the path for the new data set: AnimalControl > LostAndFound > 2024 > Landing > Lost Animal Information folder.
+After setting up the project, I received the project details for 6 columns in the dataset.
+
+ 
+Picture 18: Data Cleaning
+
+Step 9: Data Structuring
+I renamed the columns in the Lost Animal Information dataset to make them more descriptive and aligned with the specific context of the Lost and Found Animal domain.
+•	Breed => LostAnimalBreed
+•	Color => LostAnimalColor
+•	Date => LostAnimalDate
+•	Name => LostAnimalName
+•	Sex => LostAnimalSex
+•	State => LostAnimalState
+Then, I clicked on SCHEMA in AWS Glue DataBrew to review the structure of the dataset and verify that all columns were correctly identified and there were no schema-related issues.
+Afterward, I created a job to finalize the structuring process, storing the newly organized dataset in the appropriate Raw folder of the S3 bucket year 2024.
+
+ 
+Picture 19: Data Structuring
+
+Step 10: Data Pipeline Implementation
+In this step, I began by creating a new AWS Glue job, naming it AniContrl-LostInfor-ETL-ThiThuThao
+I added some features to the ETL, such as:
+•	Aggregate and filter function: to focus on relevant information.
+•	Rename columns and standardizing formats.
+•	Join function to merge datasets where necessary to enrich the data.
+After finishing, the final, cleaned, and transformed data was saved back into a new S3 bucket, under the Curated folder. Also, the transformed data was stored in the Lost-Animal-Information-Reports folder.
+
+ 
+Picture 20: Data Pipeline Implementation
+
+ 
+Picture 21: Data Pipeline Implementation - Curated folder
+
+Step 11: Data Analysis
+In this step, I used Amazon Athena to analyze the curated data from the Lost and Found Animal project.
+•	Firstly, I created a new table named animalcontrol_lostandfound_table19_lamthithuthao 
+•	Then, I created a new database named: animalcontrol_lostandfound_database19_lamthithuthao
+•	The dataset used was from the Lost-Animal-Information-Reports folder within the Curated directory.
+•	The table included key columns such as Year and APR (Annual Percentage Rate)
+After setting up the table, I ran several queries to extract insights. For instance, I queried the database to list all lost animal records, sorted by their unique ID.
+
+ 
+Picture 22: Data Analysis – Amazon Athena
+
+Step 12: Data Visualization
+In this final step, I focused on visualizing the results of the Lost Animal Reporting Rate analysis. The process was as follows:
+•	I downloaded the APR_Per_Year.csv file (in step 11), which contains the Animal Reporting Rate (APR) for the year 2024, and uploaded it to a Google Excel
+•	Using Google Sheets, I created a simple bar chart to represent the APR value visually. The bar chart displayed the APR on the X-axis and the year 2024 on the Y-axis.
+•	After finalizing the visualization, I exported the Google Excel document as a PDF file, ensuring that the report was easy to share and present.
+•	The file was named Graph Report_LamThiThuThao.pdf to reflect its content and origin.
+
+ 
+Picture 23: Data Visualization
+
