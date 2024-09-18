@@ -760,7 +760,61 @@ Now, the new backup bucket was empty. If users want to see the content of this, 
 Figure 1.7 
 Lost and Found Animal - Replication Rule
 ![image](https://github.com/user-attachments/assets/5498f20e-8528-4ada-9a14-c6c102446dca)
+### After finishing this step, if users upload objects in the original file, these objects will be replicated and encrypted at the same time and are being implemented for free.
 
+### Step 16: Data Governance   
+
+I have first of all created another folder named Trusted into the 2024 zone. Next, I created a new folder in the Trusted zone, also, which is called Lost-And-Found-Animal.
+
+On the AWS Glue, I created a new Virtual ETL was created and named: `AmlCntrl-LostFdAml-DQDP-ThaoLam`.
+
+It then initiates its job by fetching the raw data from the S3 bucket named `FetchRaw-LostFdAml`.
+
+The `EvlDataQlty-LostFdAml` step checks the data for quality by its completeness using a rule created by me. It checks in this instance that the `LostFoundAnimalName` field is Completeness, over 95%. The forward computations have passed this quality check; thus, the data was not flimsy.
+
+**Figure 1.8**  
+Lost and Found Animal - Evaluate Data Quality
+![image](https://github.com/user-attachments/assets/05a56435-276a-40ec-82e2-3126d7bd2bb6)
+**Figure 1.9**  
+Lost and Found Animal - rowLevelOutcomes
+![image](https://github.com/user-attachments/assets/21b9aed9-d04e-4c0d-a974-25d6d72e5cdd)
+
+The box rowLevelOutcomes selects rows depending on the result of the data quality assessment. It added new columns to indicate data quality errors.  
+The Conditional Router node routes the data into two various output groups:  
+- **PassedGroup**: Group for all records that meet the condition, where DataQualityEvaluationResult is marked as "Passed." The filter condition is set to an exact match.  
+- **default_group**: The records in this group failed to meet any of the supplied selectors and may have been forwarded to a fallback endpoint for processing or other disposition.  
+
+The target is set to load the transformed data into an S3 bucket named AmzS3-LDAml-Trusted, without compression, in CSV format. I choose not to update the data catalogue during this step.
+
+**Figure 1.10**  
+Lost and Found Animal - Conditional Router
+![image](https://github.com/user-attachments/assets/211a4d84-41e8-43fd-bdd0-2530ef439166)
+**Figure 1.11**  
+Lost and Found Animal - Visual ETL
+![image](https://github.com/user-attachments/assets/1e1f129f-1029-41cb-b456-c92134db2e39)
+![image](https://github.com/user-attachments/assets/777dee22-d928-4de5-85cd-f7d8be152c62) Picture 11: Lost and Found Animal - Trusted Data Folder
+**After Save and Run the Visual ETL**, the processed data from the AWS Glue job has been successfully stored in the Trusted folder that I created in the first step. This ensures the data is available for further use or analysis.
+
+In step 16, I will answer the questions: "How to guarantee data quality?" and "How to guarantee data privacy?" 
+
+- It ensures data quality through automation checks such as completeness and schema validation, and routes data conditionally based on an evaluation's outcome, ensuring that only high-quality data ever enters the processing system. The job also uses a structured approach to filter and handle data based on quality criteria.
+- Besides, the job ensures data privacy by finding sensitive information, encrypting at rest and in transit, and controlling access via permission settings and AWS KMS keys. These security measures allow private data to be protected, accessible only to users who have been allowed to see it, and in compliance with the set bases of privacy.
+
+**Step 17: Data Monitoring**  
+Below is the CloudWatch dashboard that was applied to track the two key metrics: EstimatedCharges and NumberOfObjects. The EstimatedCharges metric plots a time series of charges accrued in this project, while the NumberOfObjects metric tracks the number of objects in S3 over the last week. This helps in monitoring both cost and storage usage for the project.
+
+**Figure 1.12**
+Lost and Found Animals - CloudWatch Dashboard – 2 Line Charts
+![image](https://github.com/user-attachments/assets/de668704-998c-4abb-af93-30381c04ad3e)
+**Next, I worked with AWS CloudWatch** to create and configure an Alarm to track the project's estimated charges and resource usage. I created an alarm that would trigger when the EstimatedCharges is equal to or greater than $50 within a time window of 6 hours continuously.
+
+**Figure 1.13**
+Lost and Found Animals - Alarm - Setting Condition
+![image](https://github.com/user-attachments/assets/7e97c72a-5a4e-45a6-9f1c-8294217286fd)
+**Then, I have configured Alarm Notifications.** I have chosen the pre-existing SNS topic 'Default_CloudWatch_Alarms_Topic'. In addition, I have added an email notification for my email: (thithuthao.lam@myucwest.ca). By so doing, an email will be sent out in case charges exceed the $50 limit.
+
+**Figure 1.14**
+Lost and Found Animals - Alarm – Setting Notification
 
 
 
