@@ -108,49 +108,95 @@ The proposed platform uses services provided by AWS, S3 for data storage, AWS Gl
 - **References** ........................................................... Page 87
 ---
 
-# Introduction
-The City of Vancouver stands in a position where data-driven insights can significantly enhance decision-making, public service delivery, and resource utilization. The Data Analytic Platform (DAP) provides a foundation for integrating, processing, and visualizing vast datasets collected from different sources. Through this platform, city officials can make informed decisions that will improve the lives of residents, enhance city planning, and improve public services.
+<h1 align="center">AWS Data Analytic Platform for The City of Vancouver</h1>
 
-The DAP enables the transformation of large datasets into actionable insights. By aggregating data from various departments, the city can gain a comprehensive view of operations, identify trends, and anticipate challenges. The platform also promotes transparency and accountability by offering easy access to city achievements and programs.
+<h2 align="center">Introduction</h2>
 
-The following steps detail the implementation and migration of the Data Analytic Platform to AWS:
+The City of Vancouver is in an advantageous place where the proper use of data can further improve decision-making, public services, and usage of resources. The establishment of the Data Analytic Platform (DAP) is essential for the city because it provides a foundation for the integration, processing, and visualization of a massive amount of data received from different sources. Through this platform, city officials can make the right decisions for the city's betterment by considering the analyzed data on the people’s quality of living, improved service delivery, and enhanced city planning.
 
-### Table 1: Steps for Designing and Implementing the Platform
+The value of the DAP is in its capacity to turn masses of data into usable information. Such information, gathered from different departments, can give an overall picture of the city’s functioning, reveal trends, and anticipate and plan for issues that may crop up in the future. Furthermore, a successful DAP can also help increase transparency and accountability so the city can report its achievements and programs well to the public.
 
-| Steps                                    | Description |
-|------------------------------------------|-------------|
-| **Data Analytical Question Formulation** | Identifying critical questions the platform needs to answer, aligning with the city's strategic goals. |
-| **Data Discovery**                       | Identifying and gathering relevant datasets from various sources within the city's departments. |
-| **Data Storage Design**                  | Designing a robust storage solution, including data lakes, databases, and warehouses. |
-| **Dataset Preparation**                  | Cleaning and formatting data to ensure consistency and accuracy before ingestion. |
-| **Data Ingestion**                       | Ingesting prepared data into the platform using batch processing or real-time streaming. |
-| **Data Storage**                         | Storing ingested data in designed storage solutions for easy access and analysis. |
-| **Data Pipeline Design**                 | Designing pipelines to automate data extraction, transformation, and loading (ETL). |
-| **Data Cleaning**                        | Further cleaning data within the platform to maintain quality and remove inconsistencies. |
-| **Data Structuring**                     | Structuring data into optimal formats and creating data models for analysis. |
-| **Data Pipeline Implementation**         | Implementing designed pipelines to ensure continuous and efficient data processing. |
-| **Data Analysis**                        | Extracting insights from structured data using analytical tools and methods. |
-| **Data Visualization**                   | Visualizing analysis results through dashboards and reports for easy understanding and action. |
-| **Data Publishing**                      | Publishing insights and visualizations, making them accessible to stakeholders for decision-making. |
+The table below shows the steps that the City of Vancouver needs to take to implement its comprehensive Data Analytic Platform, which will support its mission to improve city operations and enhance the well-being of its residents.
+
+To be able to implement and migrate a data analytic platform for The City of Vancouver to AWS, we have designed and implemented it based on the 13 steps below:
+
+<h3 align="center">Table 1: Steps for Designing and Implementing the Platform</h3>
+
+| Steps                          | Description |
+|---------------------------------|-------------|
+| **Data Analytical Question Formulation** | Identifying critical questions, the platform needs to answer, aligning with the city's strategic goals. |
+| **Data Discovery**              | Identifying and gathering relevant datasets from various sources within the city's departments. |
+| **Data Storage Design**         | Designing a robust storage solution, including data lakes, databases, and warehouses. |
+| **Dataset Preparation**         | Cleaning and formatting data to ensure consistency and accuracy before ingestion. |
+| **Data Ingestion**              | Ingesting prepared data into the platform using methods like batch processing or real-time streaming. |
+| **Data Storage**                | Storing ingested data in designed storage solutions for easy access and analysis. |
+| **Data Pipeline Design**        | Designing pipelines to automate data extraction, transformation, and loading (ETL). |
+| **Data Cleaning**               | Further cleaning data within the platform to maintain quality and remove inconsistencies. |
+| **Data Structuring**            | Structuring data into optimal formats and creating data models for analysis. |
+| **Data Pipeline Implementation**| Implementing designed pipelines to ensure continuous and efficient data processing. |
+| **Data Analysis**               | Extracting insights from structured data using analytical tools and methods. |
+| **Data Visualization**          | Visualizing analysis results through dashboards and reports for easy understanding and action. |
+| **Data Publishing**             | Publishing insights and visualizations, making them accessible to stakeholders for decision-making. |
+
+This structured approach ensures that the data analytic platform is both comprehensive and scalable, meeting the city's current and future data needs.
+
+<h2 align="center">Dataset 1: 3-1-1 Service Requests Regarding "Abandoned Non-Recyclables—Small Case"</h2>
+
+### By Ugochukwu Nwosu
+
+<h3 align="center">DAP Design and Implementation (Steps 1-13)</h3>
+
+**Step 1: Data Analytical Question Formulation**  
+Define the data analytical questions specific to a department. Recycle BC will analyze service requests for abandoned non-recyclables, focusing on improving waste management efficiency by examining how service requests were handled in 2022.
+
+**Step 2: Data Discovery**  
+Select and gather relevant datasets, specifically the 3-1-1 service requests regarding abandoned non-recyclables from the Open Data Portal in Vancouver.
+
+![Figure 1](URL)  
+*Image: Authors*
+
+**Step 3: Data Storage Design**  
+Use Amazon S3 to design the storage solution, creating a bucket named `RecycleBC-AbandonedNonRecyclables` to store data securely.
+
+![Figure 2](URL)  
+*The S3 Bucket with the 2023 and 2024 Folders*
+
+**Step 4: Dataset Preparation**  
+Clean and format datasets for 2023 and 2024 for analysis, focusing on abandoned non-recyclables.
+
+![Figure 3](URL)  
+*The Downloaded Datasets in The Local Environment*
+
+**Step 5: Data Ingestion (Pull data into Operational Environment)**  
+Move the prepared data into S3 storage, ensuring it is accessible for further processing.
+
+![Figure 4](URL)  
+*The Dataset Files Pulled into the Operational Environment*
+
+**Step 6: Data Storage**  
+Organize the S3 bucket with `Landing`, `Raw`, and `Curated` folders to manage the data workflow.
+
+![Figure 5](URL)  
+*The Landing, Raw, and Curated Folders*
+
+**Step 7: Data Pipeline Design**  
+Design the data pipeline to automate data movement and transformation.
+
+![Figure 6](URL)  
+*The Data Pipeline*
+
+**Step 8: Data Cleaning**  
+Use AWS Glue DataBrew for cleaning the dataset, handling invalid values, and ensuring data quality.
+
+![Figure 7](URL)  
+*The Projects Created with the Respective Jobs After Cleaning*
+
+**Step 9: Data Structuring**  
+Structure the cleaned data to fit analytical needs and move it to the `Raw` folder in S3.
+
+**Step 10: Data Pipeline Implementation (ETL)**  
+Implement the ETL pipeline in AWS Glue, automating data processing for Recycle BC’s non-recyclable waste service requests.
 
 ---
 
-# Example Data Analysis Process - Dataset 1: 3-1-1 Service Requests (By Ugochukwu Nwosu)
-
-## Step 1: Data Analytical Question Formulation
-The main analytical question for this dataset is how well the City of Vancouver handles abandoned non-recyclable service requests. This dataset is relevant to the city's waste management program, particularly for non-recyclable items.
-
-<!-- Include images here as needed, for example: -->
-![S3 Bucket Example](https://github.com/yourusername/yourrepository/blob/main/images/s3-bucket.png)
-
----
-
-# Conclusion
-The AWS-based Data Analytic Platform for the City of Vancouver is designed to enhance efficiency, reduce costs, and offer valuable insights into the city's operations. This project lays a scalable and flexible foundation for future data-driven decisions.
-
-# References
-- Recycle BC. (2024). "Annual Waste Management Report."
-- IMD. (2024). "Descriptive Data Analysis: A Guide."
-
----
-
+Repeat this format for all remaining steps and datasets. The images should be uploaded and the correct links added where the URLs are mentioned.
