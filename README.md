@@ -4,7 +4,7 @@
 
 ![image](https://github.com/user-attachments/assets/e66360ef-8d7c-4422-bc76-e359d30be61a)
 
-# Project - Part #1  
+# Project - Part 1  
 ## AWS Data Analytic Platform for The City of Vancouver  
  
 Jaykishan Ashokkumar Patel (2237183)  
@@ -283,6 +283,53 @@ This stage involves analysis of the cleaned and structured data and identifying 
 The Query Results
 ![image](https://github.com/user-attachments/assets/8ed87c07-7282-45a0-914e-dc95d045a92f)
 ![image](https://github.com/user-attachments/assets/5282de67-456d-4db5-82eb-de8eaed5b262) Image: Authors
+## Step 12: Data Visualization
+
+**Figure 10**  
+The Graph Showing the Channels Used in Making these Reports
+![image](https://github.com/user-attachments/assets/16502e30-c8c3-4a49-97e7-97e14139c3f7)
+Image: Authors
+## Step 13: Data Publishing
+
+This stage aims to present the analyzed data and the results achieved in a web user interface accessible to the stakeholders. For this project, Amazon EC2 instances are used as the web servers that host Apache, which hosts the website used in publishing the results of the data analysis. The EC2 instances offer a computational platform for the Apache server, thus facilitating the availability and interaction of the data, which needs scalability and security (Amazon Web Services, 2024). Apache, an open-source web server software that fulfills most of the HTTP needs of the web, is set up to display the findings in a form that the interested parties can use to navigate the data and interact with the graphical representation of the analyses in addition to downloading reports from time to time (Hernandez, 2019). By hosting the data in EC2 instances, the solution can leverage the flexibility and elasticity of AWS to manage loads and ensure availability. This process ensures that decision-makers in Recycle BC and other relevant departments in the City of Vancouver can easily access valuable insights generated from data analysis and develop sound decisions. This way, the project meets its goal of providing fast access to data and increasing information dissemination efficiency for better waste management and service delivery across the city.
+
+**Figure 11**  
+The EC2 Instance and the Web Server Process
+![image](https://github.com/user-attachments/assets/6991534c-4ce8-4749-ab47-1ea288f2cf19)
+![image](https://github.com/user-attachments/assets/d46943c0-5795-48e8-8c40-d2d00782adda)
+##Dataset 2: Business Licences in Downtown Vancouver
+##DAP Design and Implementation (Steps 1- 13)
+## Step 1: Data Analytical Question Formulation
+
+Formulating data analytical questions involves setting clear goals and identifying the right data to answer specific business needs. This step ensures that the analysis focuses on the right areas, helping to draw useful conclusions and take informed actions based on the data.
+
+The screenshot below shows a breakdown of the data analysis process to improve business license issuance and compliance in Downtown Vancouver. It starts with a high-level goal and breaks it down into different steps.
+
+1. **Descriptive Metric:** The first step is to understand the current situation. This involves analyzing data on the number of business licenses issued per year. *How many business licenses are issued per year?*
+
+2. **Diagnostic Metric:** The next step is to identify the reasons for business license delays. This can be done by analyzing data about the reasons for the delay. *Why are there delays in issuing licenses?*
+
+3. **Predictive Metric:** The goal here is to predict the likelihood of a business license renewal. This can be done by analyzing data about past renewal patterns and other factors that might influence renewals. *How likely is a business license to be renewed?*
+
+4. **Prescriptive Metric:** Finally, the goal is to recommend proactive actions to improve renewal reminders. This involves analyzing data about successful reminders and developing new ways to ensure businesses are reminded about their licence renewal. *How can we remind businesses about license renewals?*
+
+Each metric is linked to a specific data source or operational dataset. For example, to analyze the reasons for delays, data from "Business Licence Delay Logs" will be used. This way, the screenshot shows how data analysis can be used to achieve a specific goal by breaking it down into smaller, more manageable steps.
+
+**Step 1: Data Analytical Question Formulation**
+![image](https://github.com/user-attachments/assets/1d849355-ff8b-45ac-bba0-c09bc889e7a9)
+Step 2: Data Discovery
+	Data discovery is about finding, understanding, and organizing data to set the stage for deeper analysis and informed decision-making. It involves data collection which means gathering data from various sources, such as databases, files, or external sources and then analyzing the collected data to understand its structure, quality, and content.
+Step 2: Data Discovery
+![image](https://github.com/user-attachments/assets/418785a7-78e8-479a-9ffa-f4b470e422ef)
+Step 3: Data Storage Design
+In this step, we need to store our operational data in an analytical environment using S3 service in AWS. To do this, firstly, we need to create a bucket for our data storage in S3. Bucket is a place where we store objects and object could be anything be it excel file, pdf, image, json file etc.
+•	Bucket Created: business-businesslicences-gurleen
+•	Organize by year: Inside the bucket, created folders for each year ("2023/Landing," "2024/Landing").
+•	Created folders for specific data: Within each year folder, made more folders for different types of data, like “business licences application records”, “business licences delay logs”, “business licences renewal history”, “business licences compliance data”, “business licences renewal reminder logs”, “process efficiency metrics” inside the “landing folder”.
+Finally, uploaded the dataset files into those relevant folders. This helps keep data organized and easy to find later.
+
+Step 3: Data Storage Design
+![image](https://github.com/user-attachments/assets/915d3916-5ea7-4e71-98ec-e5078d89420a)
 
 
 
