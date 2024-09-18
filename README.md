@@ -660,7 +660,11 @@ To estimate the cost of the dataset preparation phase for the above-listed proje
 - **Total 12 Months Cost**: 413.76 USD
 ![image](https://github.com/user-attachments/assets/74765a38-d045-4d4a-8f9f-22cb34b22efa)
 Picture 26: DAP Estimated Cost
-## Conclusion
+<div align="center">
+
+Conclusion 
+
+</div>
 
 In conclusion, the approach for designing and implementing the Data Analytic Platform for different datasets from the City of Vancouver has been provided, including data ingestion, data cleaning, data structuring, and data analysis with AWS services. The platform supports the reception, storage, and analysis of service requests to help improve decision-making and, consequently, waste management in Vancouver. The implementation also used AWS Glue for ETL activities, S3 for scalable data storage, Amazon Athena for abstract and robust data analysis, and Elastic Compute Cloud (EC2) instances with Apache for data dissemination. It is convenient to state that the project is relatively affordable, with a total estimated annual cost of 413.76 USD, thus making the platform affordable and scalable for the clients. This procedural platform puts City of Vancouver at a more strategic vantage point to address the community's needs, thereby escalating efficiency in service provision and environmental conservation.
 ## References
@@ -715,7 +719,12 @@ Tillu, J. (2024, May 12). Understanding Amazon S3 storage classes. Medium. [http
 </div>
 
 
+<div align="center">
+
 Contents
+
+</div>
+
 Introduction ................................................................. 4
 DAP Design and Implementation (Step 15-17) ............. 4
 Step 15: Data Protection .................................................. 4
