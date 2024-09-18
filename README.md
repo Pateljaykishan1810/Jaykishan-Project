@@ -169,7 +169,7 @@ To store operational data in an analytical environment using AWS S3, follow thes
 ### Step 4: Dataset Preparation
 Data Preparation involves arranging and preparing data from various sources to achieve the business goal. In this case, it involves retrieving Business Licenses data from the City of Vancouver’s Open Data Portal for the years 2023 and 2024.
 
-# Dataset 2: Business Licenses in Downtown Vancouver (By Gurleen Kaur Khosa)
+# Dataset 2: Business Licenses in Downtown Vancouver
 
 ## DAP Design and Implementation (Steps 1-13)
 ## Step 1: Data Analytical Question Formulation
