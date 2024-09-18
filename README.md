@@ -253,22 +253,11 @@ AWS EC2 service was used to publish data files to general and web servers. I cre
 
 ## DAP Design and Implementation (Steps 1-13)
 
-### Step 1: Data Analytical Question Formulation
-In the Animal Control department, data analysis involves identifying questions to guide data collection, processing, and decision-making. This will help in understanding lost and found animals and guiding actions the City of Vancouver might take.
+## Step 1: Data Analytical Question Formulation
 
-### Step 2: Data Discovery
-This involves exploring operational environments to locate datasets relevant to answering the formulated questions. This includes:
-- **Lost Animal Information 2023-2024**: Details about lost animals, descriptions, dates, IDs, names, and statuses.
-- **Vancouver Animal Control Office Analysis**: Reports and metrics on handling lost animal cases.
-- **Register Reports**: Historical records of lost animal cases.
-- **Animal Services Staff Data**: Information on staff activities and performance.
+Firstly, it is necessary to define the data analytical questions to be posed and addressed in the Data Analytic Platform (DAP) framework for the City of Vancouver. These questions should be specific to a particular department or office within the city and address issues within that department or areas that could be improved upon. Recycle BC is the primary office involved in this project since its primary tasks are collecting, transporting, disposing of, and recycling waste within the city (Recycle BC, 2024). The dataset pertains to the 3-1-1 service requests regarding “Abandoned Non-Recyclables—Small Case” and is within this department’s jurisdiction.
 
-### Step 3: Data Storage Design
-Set up AWS S3 buckets to store different types of data related to lost and found animals:
-- **Bucket Name**: `animalcontrol-lostandfound-lamthithuthao`
-- **Folder: Landing/2023**: Contains subfolders such as "Lost Animal Information 2023," "Register Reports," and "Vancouver Animal Control Office Analysis."
-- **Folder: Landing/2024**: Similar structure for data from 2024.
+The primary procedure to be examined in this analysis is the department’s response to service requests regarding abandoned non-recyclable items. More specifically, the project will highlight how well this department manages these service requests to enhance the efficiency of the waste management system in the building. The goal will be to increase response times and decrease the rates at which items are left behind, thus enhancing the cleanliness of cities and residents' satisfaction.
 
-### Step 4: Dataset Preparation
-Prepare and convert raw data into a structured format for analysis on AWS. I downloaded data for 2023 and 2024 from the City of Vancouver data website, and used sample data in CSV format with key attributes. Saved CSV files in Excel format for easy manipulation and sharing.
+Notably, the project will use descriptive analysis as its primary approach. Descriptive analysis is the most straightforward and appropriate method for this stage because it focuses on understanding what has happened within the organization (IMD, 2024). The descriptive analysis will focus on answering the question: "What happened with the abandoned non-recyclable service requests in 2022?" The metric that will be employed comprehensively in this assessment is the total number of service requests concerning abandoned non-recyclables, and the total number of service requests met throughout the year. Other measures could be the mean time to respond to such calls and the distribution of such occurrences in distinct neighborhoods in Vancouver.
 
