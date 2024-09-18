@@ -28,22 +28,6 @@ This report presents the implementation of the Data Analytic Platform (DAP) for 
 
 The proposed platform uses services provided by AWS, including S3 for data storage, AWS Glue for ETL processes, Athena for data analysis using SQL, and EC2 instances with Apache for data publishing. Key procedures like data ingestion, data cleaning, data structuring, and analysis were incorporated into the platform to improve the current system. The project is easily expandable and inexpensive to implement, with an estimated annual cost of USD 413.76, which is feasible and beneficial to improve the efficiency of waste management and decision-making.
 
----
-
-# Contents
-
-<h1 align="center">Abstract</h1>
-
-This report presents the implementation of Data Analytic Platform (DAP) for the City of Vancouver. The report covers the DAP design and implementation for four datasets from the City of Vancouver’s Open Data Portal:
-
-1. 3-1-1 Service Requests Regarding "Abandoned Non-Recyclables—Small Case"
-2. Business Licences in Downtown Vancouver
-3. Animal Control - Lost and Found
-4. Rental Standards
-
-The proposed platform uses services provided by AWS, S3 for data storage, AWS Glue for ETL processes, and Athena for data analysis using SQL and EC2 instances with Apache for data publishing. Key procedures like data ingestion, data cleaning, data structuring, and analysis were incorporated into the platform for the benefit of the current platform. The project is easily expandable and inexpensive to implement, with an approximate annual price tag of USD 413.76, which is reasonable and can be implemented to improve the effectiveness of waste management and the efficiency of decision-making.
-
----
 
 <h2 align="center">Contents</h2>
 
@@ -148,7 +132,7 @@ This structured approach ensures that the data analytic platform is both compreh
 
 This project focuses on designing and implementing a Data Analytic Platform (DAP) for the City of Vancouver. The platform aims to enhance the efficiency of waste management and business license issuance processes through detailed data analysis.
 
-# Dataset 2: Business Licenses in Downtown Vancouver (By Gurleen Kaur Khosa)
+# Dataset 2: Business Licenses in Downtown Vancouver
 
 ## DAP Design and Implementation (Steps 1-13)
 
