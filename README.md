@@ -446,6 +446,98 @@ This includes the identification, assessment, and preparation of datasets for mi
 - **Animal Services Staff Data**: Information on the activities of staff, their performance, and preventive measures.
 ![image](https://github.com/user-attachments/assets/526677fe-377f-4a88-8db0-5e63c26e96b0)
 Picture 2: Data Discovery
+## Step 3: Data Storage Design
+
+In Step 3, Data Storage Design focuses on organizing and securely storing datasets in AWS S3. In this step, I set up dedicated AWS S3 buckets to store different types of data related to the Lost and Found Animals domain.
+
+- **Bucket Name**: animalcontrol-lostandfound-lamthithuthao
+- **Folder: Landing/2023** – This could contain subfolders like "Lost Animal Information 2023," "Register Reports," and "Vancouver Animal Control Office Analysis."
+- **Folder: Landing/2024** – Similarly, this would store data for the year 2024, such as "Lost Animal Information 2024" and other relevant datasets.
+![image](https://github.com/user-attachments/assets/a520622c-2027-4953-9cda-7dad95045f03)
+Picture 3: Data Storage Design - Landing/2023
+![image](https://github.com/user-attachments/assets/8d16e8bf-e83d-4f85-afcf-7675c2d2fffb)
+Picture 4: Data Storage Design - Landing/2024
+## Step 4: Dataset Preparation
+
+Basically, Data Preparation is the process of organizing and converting raw data into a structured format, making it ready for uploading and analysis on AWS.
+
+For this, I downloaded the following two Lost and Found Animal data Excel files for the years 2023 and 2024 from the City of Vancouver data website. Due to the rest of the data being unavailable for this assignment, I used ChatGPT to obtain the sample data in CSV format, which is created with 10 columns and 5 rows. The sample dataset contains very relevant fields to the needed attributes in analysis, such as animal IDs, report dates, and statuses, among other key fields. Below are the areas these datasets covered:
+- Animal Services Staff
+- Analyzing the Vancouver Animal Control Office
+- Members of Staff in the Vancouver Animal Control Office
+- Register Reports.
+
+After generating the sample datasets, I saved all the CSV files in Excel format. This facilitates more convenient manipulation, review, or sharing with team members or stakeholders.
+![image](https://github.com/user-attachments/assets/cb8337f8-ffe2-4aab-94ea-f68c76885da4)
+Picture 5: Dataset Preparation - 2023
+![image](https://github.com/user-attachments/assets/147ea141-0733-4131-bb73-c81594fd277d)
+Picture 6: Dataset Preparation - 2024
+## Step 5: Data Ingestion
+
+The main objective of Data Ingestion is to successfully and accurately migrate the prepared datasets from Step 4 into their corresponding homes within the AWS S3 bucket. To ingest data, I followed a technique of uploading the datasets by adding files to the previously created folders for each year in the Landing zone: 2023 and 2024. After uploading each dataset, I verified the upload status to ensure that each dataset was uploaded to the correct folder and transferred with no errors.
+![image](https://github.com/user-attachments/assets/46c99b89-94d5-4098-bb64-12e2d03ba1e9)
+![image](https://github.com/user-attachments/assets/32bb71f2-08ac-4051-8e17-d9f1a462f110)
+Picture 8: Data Ingestion
+![image](https://github.com/user-attachments/assets/2239bfeb-d92a-4c90-93f7-a3b938e39b34)
+Picture 9: Data Ingestion
+![image](https://github.com/user-attachments/assets/44171d8d-4daa-4da9-803e-9a7ac14094d9)
+Picture 10: Data Ingestion
+## Step 6: Data Storage
+
+After successfully completing the upload of the datasets in Step 5, a logical follow-through would be to identify appropriate storage classes in the Properties section depending on usage patterns, helping in finding a balance between cost efficiency and performance regarding data readiness in read and write mode, as may comparatively be required for processing by the City of Vancouver's Animal Control.
+
+The datasets were organized into specific folders within the S3 bucket structure:
+•	Vancouver Animal Control Office Staff 2024 in Standard class
+•	Vancouver Animal Control Office Analysis 2024 in Standard class
+•	Register Reports 2024 in Standard class
+•	Lost and Found Animal Information 2024 in Standard class
+•	Animal Services Staff 2024 in Standard class
+![image](https://github.com/user-attachments/assets/d5b30317-b57e-43eb-920d-f4b1154cfee3)
+Picture 11: Data Storage
+![image](https://github.com/user-attachments/assets/f72c7405-afdb-4967-88ab-537ae4ccd5ea)
+Picture 12: Data Storage
+![image](https://github.com/user-attachments/assets/1ed7f5e8-09cb-41ba-8869-68707244be19)
+Picture 13: Data Storage
+![image](https://github.com/user-attachments/assets/6fb63d17-4019-4e1d-8576-3b52323fa92b)
+Picture 14: Data Storage
+![image](https://github.com/user-attachments/assets/d4c9ee69-0ce2-4a78-82b4-7f8bcd70a9ec)
+Picture 15: Data Storage
+## Step 7: Data Pipeline Design
+
+In Step 7, Data Pipeline Design, I created a graphical representation of the ETL process with a Data Lineage Diagram. The diagram illustrates the flow of the data from its extraction stage to the final calculation of the Lost Animal Reporting Rate. I used ChatGPT to create in writing the formula that calculates the metric from the transformed data: Lost Animal Reporting Rate. The final rate output has the benefit of enabling the City of Vancouver to understand how ground-level lost and found animal management processes are effective.
+![image](https://github.com/user-attachments/assets/b59cb2e3-7a24-4cc5-857f-7a40e16e7b9b)
+Picture 16: Lost Animal Reporting Rate Formula
+![image](https://github.com/user-attachments/assets/dc9d5192-d357-4e67-86d4-2d7ed2e67ae3)
+Picture 17: Data Design Pipeline
+## Step 8: Data Cleaning
+
+In this step, I cleaned the Lost Animal Information dataset within the 2024 folder, ensuring that there are no invalid or missing values in the data, which could affect the accuracy of any analysis performed later.
+
+- In the 2024 folder in the S3 bucket, I created a new folder named Raw.
+- Inside the Raw folder, I created another folder named Lost_Animal_Information to store the unprocessed data.
+- Then, I used AWS Glue DataBrew to create a project and set the project name to `animalcontrol-lostandfound-cleaning-lamthithuthao`.
+- New dataset details: `animalcontrol-lostandfound-information-lamthithuthao`.
+- Selected the path for the new dataset: `AnimalControl > LostAndFound > 2024 > Landing > Lost Animal Information` folder.
+
+After setting up the project, I received the project details for 6 columns in the dataset.
+![image](https://github.com/user-attachments/assets/cc3fae28-309c-4fb0-b28e-a84560b35aa5)
+Picture 18: Data Cleaning
+Step 9: Data Structuring
+I renamed the columns in the Lost Animal Information dataset to make them more descriptive and aligned with the specific context of the Lost and Found Animal domain.
+•	Breed => LostAnimalBreed
+•	Color => LostAnimalColor
+•	Date => LostAnimalDate
+•	Name => LostAnimalName
+•	Sex => LostAnimalSex
+•	State => LostAnimalState
+Then, I clicked on SCHEMA in AWS Glue DataBrew to review the structure of the dataset and verify that all columns were correctly identified and there were no schema-related issues.
+Afterward, I created a job to finalize the structuring process, storing the newly organized dataset in the appropriate Raw folder of the S3 bucket year 2024.
+![image](https://github.com/user-attachments/assets/a8c673b4-e0e7-42ee-8f87-c1655f55880b)
+Picture 19: Data Structuring
+
+
+
+
 
 
 
