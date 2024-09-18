@@ -330,12 +330,122 @@ Finally, uploaded the dataset files into those relevant folders. This helps keep
 
 Step 3: Data Storage Design
 ![image](https://github.com/user-attachments/assets/915d3916-5ea7-4e71-98ec-e5078d89420a)
+![image](https://github.com/user-attachments/assets/f1a009e6-45c2-45e2-b9ef-0aa5fda1a825)
+![image](https://github.com/user-attachments/assets/40d834ad-d238-4e4a-a772-21636a14c130)
+![image](https://github.com/user-attachments/assets/9fd0e900-6bfa-4574-b85d-7fb7e2764cbf)
+## Step 4: Dataset Preparation
 
+Data Preparation is basically preparing or arranging your data from various sources to achieve your business goal, which in my case was Business licences data retrieved from the City of Vancouver (Open Data Portal) for the years 2024 and 2023.
 
+**Step 4: Dataset Preparation**
+![image](https://github.com/user-attachments/assets/8ccded4e-b657-4bcb-9035-9e732ae9d964)
+![image](https://github.com/user-attachments/assets/6699d37e-ce29-4e2d-8954-35eed48d7366)
+![image](https://github.com/user-attachments/assets/e6d58999-c9cf-4e68-bdee-8c327101bea8)
 
+## Step 5: Data Ingestion
 
+Data Ingestion involves uploading your data inside your AWS bucket in specific folders. As in my case, uploading my Excel and PDF files into their relevant folders. For instance, `business_licences_application_records.xlsx` for the Business Licences Application Records folder of my business bucket and so on.
 
+**Step 5: Data Ingestion**
+![image](https://github.com/user-attachments/assets/3724811c-cb4b-42ea-9253-030683fd8f23)
+![image](https://github.com/user-attachments/assets/1e508f8f-3632-47ab-8c15-f112b9d30251)
+## Step 6: Data Storage
 
+Data storage is an essential step in data analytics platforms. It involves storing the collected data into folders of S3 buckets for efficient access and analysis. After gathering data from the open data portal, it is then stored in the landing environment of S3.
+
+**Step 6: Data Storage**
+![image](https://github.com/user-attachments/assets/941191f2-3c03-4797-9d24-fc6f69a03a55)
+## Step 7: Data Pipeline Design
+
+The Data Pipeline design step is about planning how data will travel through the system, from where it starts to where it ends up. This includes deciding how data will be collected, processed, changed, and stored. The aim is to make sure data moves smoothly and is ready for analysis.
+
+I created a visual representation of my ETL pipeline in draw.io using tables showing various stages of my design, such as removing, filtering, extracting, and grouping stages, and then finally reaching my outcome table showing “Licence Issuance Rate” calculations for the years 2024 and 2023.
+
+**Step 7: Data Pipeline Design**
+![image](https://github.com/user-attachments/assets/b754cd3e-25cc-4d2a-9524-a4b353de74cd)
+![image](https://github.com/user-attachments/assets/1a1a1f0d-de90-46a5-a1f1-de189ad7e338)
+![image](https://github.com/user-attachments/assets/c6775028-3ae8-4895-8ec5-9202c554b4bd)
+![image](https://github.com/user-attachments/assets/2008d922-50e6-4398-9d50-a3b6b07775b6)
+![image](https://github.com/user-attachments/assets/3aac0f2c-5739-4176-ba67-11a46512180a)
+## Step 8: Data Cleaning
+
+In this step, I cleaned up the dataset of business licenses application records in an AWS S3 bucket. The process involved creating a raw folder inside the landing zone and then using a data cleaning tool called AWS Glue DataBrew.
+
+1. I created a project in AWS Glue DataBrew.
+2. The project cleaned the data by removing invalid, null, or missing values using the function feature. Columns with more than 80% missing values were dropped because they were deemed unuseful for analysis.
+
+This cleaning process ensures the accuracy of any future analysis performed on the data.
+
+**Step 8: Data Cleaning**
+![image](https://github.com/user-attachments/assets/55375c6d-2bc5-4f41-89cc-4312b8a2976b)
+![image](https://github.com/user-attachments/assets/a4a7de09-8ada-47db-b0d7-ba6ea22c69eb)
+## Step 9: Data Structuring
+
+In this step, I arranged my data in a structured manner, meaning I renamed column names with relevant names with respect to the information they hold. Furthermore, I configured the “Schema” in AWS Glue DataBrew to ensure whether my dataset had relevant datatypes for specific columns and, if not, changed them accordingly. I then created and ran my job and stored the result of my cleaning and structuring inside the raw folder of my S3 bucket.
+
+**Step 9: Data Structuring**
+![image](https://github.com/user-attachments/assets/ef4f8842-7390-49c0-b100-6d0142e23086)
+![image](https://github.com/user-attachments/assets/dc4bebce-1890-4ef9-a08c-1cb312140abf)
+![image](https://github.com/user-attachments/assets/94709b2e-a851-4b00-8d4a-5ef114b7b1ae)
+![image](https://github.com/user-attachments/assets/fd398b95-fde3-4e11-af2e-1a1a1f93cb12)
+![image](https://github.com/user-attachments/assets/dc3b08a4-6533-4cc5-8c13-7f6e4e7b266f)
+## Step 10: Data Pipeline Implementation
+
+This step involves the creation of a visual ETL using AWS Glue service. This step provides us with the summarized information for our analysis. In this step, I fetched data from my raw folder (cleaned and structured data) and then performed certain operations on that dataset to extract specific information. I used aggregation, filter, and change schema functions to retrieve specific information from my dataset. I then used the join function to group my dataset and performed an average calculation to determine the “Licence Issuance Rate” for the years 2024 and 2023 using the columns “Number of business licenses issued per year” and “Total number of business license applications initiated.”
+
+Licence Issuance Rate = (Number of business licenses issued per year / Total number of business license applications initiated) * 100
+
+Finally, I ran my job, and my results were stored in the curated folder of my S3 bucket.
+
+**Step 10: Data Pipeline Implementation**
+![image](https://github.com/user-attachments/assets/b72acc6f-3332-4568-9e2e-56d35e442694)
+![image](https://github.com/user-attachments/assets/25a876c6-bbd9-4a0a-8080-d7c3f702380e)
+![image](https://github.com/user-attachments/assets/8394d8eb-8463-4b09-92cb-2c4a59f8070a)
+![image](https://github.com/user-attachments/assets/cabc0056-8376-4983-9423-d30c014a613b)
+![image](https://github.com/user-attachments/assets/f9aba81d-39ce-4464-bc0f-7e0770bdf7dd)
+![image](https://github.com/user-attachments/assets/0e226e6a-a5f8-4009-ac21-bbffbaa8e65a)
+![image](https://github.com/user-attachments/assets/1d079655-eba5-4383-839b-d73ba8910850)
+## Step 11: Data Analysis
+
+The AWS service used for executing this step is Amazon Athena. This step involved analyzing the summarized curated folder data from the S3 bucket by creating tables for specific CSV files. The table contained columns such as Year and LIR (Licence Issuance Rate) for the years 2023 and 2024. After table creation, I ran SQL queries to retrieve specific information from the table using SQL “ORDER BY”, “SELECT” and various other queries.
+
+**Step 11: Data Analysis**
+![image](https://github.com/user-attachments/assets/9d4193c6-57c4-4613-aec6-8be7c3be5b20)
+![image](https://github.com/user-attachments/assets/f85b48f1-f0be-4880-8d02-e1c58d7f3d8c)
+![image](https://github.com/user-attachments/assets/f4f08c0d-664d-47b0-b0a4-f455798bc677)
+![image](https://github.com/user-attachments/assets/353d2aa3-2115-49b8-a2b9-9789b04277e0)
+## Step 12: Data Visualization
+
+In this step, I created visualizations
+![image](https://github.com/user-attachments/assets/3f1a1bde-57d3-4b09-aae8-c75fe7ed4a71)
+![image](https://github.com/user-attachments/assets/22ea1f9d-2dfe-4714-963a-efae84ec1e77)
+## Step 13: Data Publishing
+
+AWS EC2 service was used to execute this step. This step involved publishing your data files to general and web servers to be accessible by the public. To do this step, I created two EC2 instances, one for the general server and another one for the web server. For connecting my instances, I used “Remote Desktop Connection” inbuilt software in Windows and uploaded my files to the remote computer in the analysis folder in C-Drive for the general server and in the wwwroot folder for the web server. I then used the public IP address to access my uploaded files on the web browser.
+
+Step 13: Data Publishing
+![image](https://github.com/user-attachments/assets/f2f2ba7e-8494-4af9-9feb-7a3ffc9b8afa)
+![image](https://github.com/user-attachments/assets/ee76fe23-533c-4657-9f82-c970c8e910f1)
+![image](https://github.com/user-attachments/assets/00eec6fd-a448-4d8a-bbbe-bae5d2755ec8)
+![image](https://github.com/user-attachments/assets/d6942da3-7597-4ecc-b7af-7f3d78352793)
+![image](https://github.com/user-attachments/assets/0a739dc9-09b8-451c-af12-64dc267e2dc2)
+## Step 1: Data Analytical Question Formulation
+
+In the Animal Control department, identifying the Data Analysis Question Formulation needs a data analytics platform to find its goal and answer 4 types of data analysis questions regarding lost and found animals. These questions will guide how/what data we collect/process, as well as who or which department analyzes the data. Also, what decisions or actions the City of Vancouver might take based on this analysis?
+![image](https://github.com/user-attachments/assets/0ae07cfd-440f-4215-95d7-0a054e9e34d1)
+Picture 1: Data Analytical Question Formulation
+
+## Step 2: Data Discovery
+
+This includes an in-depth exploration of all operational environments to identify and locate all datasets relevant to answering the questions that will have been formulated in Step 1.
+
+This includes the identification, assessment, and preparation of datasets for migration to AWS. Specifically:
+- **Lost Animal Information 2023-2024**: Information about the animals reported to be lost, together with their descriptions, dates, IDs, names, and statuses.
+- **Vancouver Animal Control Office Analysis**: Reports and metrics for internal use on handling lost animal cases.
+- **Register Reports**: Time sheets of historical records of cases related to lost animals.
+- **Animal Services Staff Data**: Information on the activities of staff, their performance, and preventive measures.
+![image](https://github.com/user-attachments/assets/526677fe-377f-4a88-8db0-5e63c26e96b0)
+Picture 2: Data Discovery
 
 
 
