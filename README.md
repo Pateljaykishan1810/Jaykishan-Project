@@ -224,4 +224,76 @@ The data ingestion process moves the prepared datasets into the operational envi
 The Dataset Files Pulled into the Operational Environment
 ![image](https://github.com/user-attachments/assets/bd3e9fef-9768-4e84-ab56-35f8943512c9)
 ![image](https://github.com/user-attachments/assets/dc23bc19-8559-409a-a6bc-25c53841ee2b) Image: Authors
+## Step 6: Data Storage
+
+Data storage is another step in data management, whereby datasets are stored and arranged to facilitate retrieval and use. The data storage solution for this project is to organize the data gathered within the S3 Amazon bucket by creating folders within the bucket as specified below after the ingestion phase, where datasets are uploaded.
+
+When organizing the S3 bucket, the folder structure is designed to move data from the raw format directly to the curated format suitable for analysis without jumping through all the intermediate processes involved. The main folders consist of **Landing**, where the data is first deposited without pre-processing. For this project, the datasets for the years 2023 and 2024 were uploaded to the Landing folder under the respective paths `RecycleBC/AbandonedNonRecyclables/2023/Landing/ServiceRequests` and `RecycleBC/AbandonedNonRecyclables/2024/Landing/ServiceRequests`. The data in this folder remains in its original format as downloaded from the Open Data Portal.
+
+The data collected undergoes the initial processing and cleaning before being transferred to the **Raw** folder. This folder contains the raw data that has gone through the cleansing process and is thus still comparatively unformatted but is accurate and uniform. They support further data processing and are also used as a source for analyzing the obtained results. 
+
+Finally, the **Curated** folder contains information that has been processed, shaped, or enriched to best suit analysis and subsequent reporting. The curation typically involves pre-processing data sets that are almost ready to feed into analysis tools for producing insights.
+
+**Figure 5**  
+The Landing, Raw, and Curated Folders hold the Initial, Raw, and Processed Data
+![image](https://github.com/user-attachments/assets/10f1e0b7-6e18-44c9-9291-a5cae708a7c9)
+![image](https://github.com/user-attachments/assets/1136f739-2b9c-4f3d-bc94-d2ace18ebb47)
+Image: Authors
+## Step 7: Data Pipeline Design
+
+**Figure 6**  
+The Data Pipeline
+![image](https://github.com/user-attachments/assets/c995588d-210b-4500-ab58-120cc273cbb9)
+![image](https://github.com/user-attachments/assets/bcdf44bb-828e-4180-9b38-60a0ce6c9697)
+![image](https://github.com/user-attachments/assets/aa0f712b-1cd1-4f0b-97cb-bbdbb15d34d5)
+![image](https://github.com/user-attachments/assets/bd375d67-2263-410d-9240-8331770c2b9c)
+Image: Authors
+## Step 8: Data Cleaning
+
+Data cleaning is essential in pre-processing because data should be accurate and free from inconsistencies before the analysis (Akram, 2024). In this project, AWS Glue DataBrew is used to clean the data. DataBrew helps prepare data by offering a graphical user interface for data cleaning, feature engineering, and handling big data, such as the City of Vancouver’s 3-1-1 service request data (AWS, 2024).
+
+The data cleaning process was initiated by creating a project on AWS Glue DataBrew focused on the Recycle BC initiative for managing non-recyclable wastes and the trash found on the streets. The naming convention of the project was straightforward, based on the department, procedure, and dataset year. The related dataset was then linked to the project by browsing the correct folder in the S3 bucket, the Landing folder, where raw data is first stored. Once the necessary permissions were established with the LabRole, data validation was performed to examine and clean invalid and exceptional values among the datasets. Further optional modifications to the existing schema include naming the columns for easy understanding and changing the data type for the planned analytical use. After that, the cleaning and preparation jobs were established, a name was given based on the name of the dataset, and the output data type was set to CSV. This job ensures that all the cleaning steps are stored and can be repeated automatically on subsequent data to be cleaned, as well as preserving clean data for subsequent analyses.
+
+**Figure 7**  
+The Projects Created with the Respective Jobs After Cleaning
+![image](https://github.com/user-attachments/assets/dbf8e849-2ed1-4163-964e-dc10c73655f6)
+![image](https://github.com/user-attachments/assets/40f7e467-8a59-43e3-b0b6-d88891e7f7e9)
+![image](https://github.com/user-attachments/assets/1530be4a-2fba-4a34-b3c4-f2077d08ccde)
+![image](https://github.com/user-attachments/assets/ddc9f428-eab6-45c4-8c5f-d312fdecb006)
+![image](https://github.com/user-attachments/assets/bfe0e115-aaa9-4053-b21e-8f47d8177abc) Image: Authors
+## Step 9: Data Structuring
+
+Data structuring goes hand in hand with data cleaning, as described in the previous step. Once the data has been cleansed and the necessary transformations made in AWS Glue DataBrew, the next step is to transform the data to fit the necessary structure for analysis (Kiely, 2023). This mainly entails formatting the data to ensure that the columns have proper and standardized names, that required data type conversions are done and that any other manipulations are done. After structuring the data, it is moved to the Raw folder in the specified S3 bucket so that the Data Analytic Platform can retrieve it for additional processing. In addition, the structuring process makes a dataset sufficiently clean. It categorizes it in a manner that can lead to querying and accurate information delivery, hence adding to the efficiency of the organization's data analytical chain.
+
+## Step 10: Data Pipeline Implementation (ETL)
+
+The data pipeline is an essential component of data management architecture as it organizes the extraction, transformation, and loading process to transform data from raw form to an analysed form (Stryker, 2024). In this project, AWS Glue was used to implement the ETL and the Visual ETL tool was used to ease the process. This process helps automate data flow and transformation around the Data Analytic Platform. With the proper functioning of the ETL pipeline in AWS Glue, the project contributes to the systematic preparation of raw data for analysis. It assists Recycle BC in addressing and handling service requests on discarded non-recyclables within Vancouver. It not only leads to higher quality and more standardized data but also contributes to the efficiency of the subsequent processes, allowing to quickly and accurately analyze the data at hand.
+
+**Figure 8**  
+The Project’s Visual ETL
+![image](https://github.com/user-attachments/assets/36fd07bd-0b6c-4435-8aec-c6b5a8f7efb9)
+![image](https://github.com/user-attachments/assets/bc0c5236-47fb-4c01-a549-3d24a5951486) Image: Authors
+## Step 11: Data Analysis
+
+This stage involves analysis of the cleaned and structured data and identifying helpful information from the data set. In this project, Amazon Athena, a serverless query service, runs the SQL queries against the data stored in the Amazon S3. This approach is suitable for analyzing the given datasets since it is not tied to specific complex structures and can be initiated when necessary. It proposes a relatively efficient and fast solution for managing abandoned non-recyclables by Recycle BC. After the data has gone through the ETL process and is in its final structured state, the next logical step is to query it using Amazon Athena. Athena also allows for SQL queries to analyze specific data elements, like patterns in service requests, trends over time, and shining the lens on specific regions seeing a higher amount of abandoned non-recyclables.
+
+**Figure 9**  
+The Query Results
+![image](https://github.com/user-attachments/assets/8ed87c07-7282-45a0-914e-dc95d045a92f)
+![image](https://github.com/user-attachments/assets/5282de67-456d-4db5-82eb-de8eaed5b262) Image: Authors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
